@@ -1,0 +1,21 @@
+{
+  "name": "task-manager",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "compose:up": "cd app && docker-compose up -d --build",
+    "compose:down": "cd app && docker-compose down --remove-orphans"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Valdeci97/task-manager.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Valdeci97/task-manager/issues"
+  },
+  "homepage": "https://github.com/Valdeci97/task-manager#readme"
+}
