@@ -1,10 +1,9 @@
 import React from 'react';
+import Login from './pages/Login';
 
 function App() {
   return (
-    <div className="App">
-      <p>Hello world from typescript</p>
-    </div>
+    <Login />
   );
 }
 
