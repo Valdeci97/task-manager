@@ -27,6 +27,7 @@
     "no-underscore-dangle": "off",
     "no-console": "off",
     "camelcase": "warn",
+    "class-methods-use-this": "off",
     "arrow-parens": [
       2,
       "always"
@@ -63,7 +64,7 @@
     "max-lines-per-function": [
       "error",
       {
-        "max": 20,
+        "max": 25,
         "skipBlankLines": true,
         "skipComments": true
       }
