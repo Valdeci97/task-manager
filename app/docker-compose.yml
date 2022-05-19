@@ -1,5 +1,17 @@
 version: '3.9'
 services:
+  frontend:
+    container_name: task_manager_frontend
+    build: ./frontend
+    ports:
+      - 3000:3000
+    depends_on:
+      backend:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "lsof", "-t", "-i:3000"]
+      timeout: 10s
+      retries: 5
   backend:
     container_name: task_manager_backend
     build: ./backend
