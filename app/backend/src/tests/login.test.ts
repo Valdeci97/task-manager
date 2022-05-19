@@ -3,7 +3,7 @@ import chaiHttp from 'chai-http';
 import sinon from 'sinon';
 import { Response } from 'superagent';
 
-import app from '../app';
+import { app } from '../app';
 import User from '../database/models/user';
 
 chai.use(chaiHttp);
@@ -21,18 +21,21 @@ describe('Testing POST route "/login"', () => {
       } as User);
     });
 
-    chaiHttpResponse = await chai.request(app).post('/login').send({
-      email: 'first.user@test.com',
-      password: 'secret_admin'
-    });
-
     after(() => { (User.findOne as sinon.SinonStub).restore(); });
 
-    it('Should return status code 200', () => {
+    it('Should return status code 200', async () => {
+      chaiHttpResponse = await chai.request(app).post('/login').send({
+        email: 'first.user@test.com',
+        password: 'secret_admin'
+      });
       expect(chaiHttpResponse.status).to.be.equal(200);
     });
 
-    it('Should return an object with user\'s data', () => {
+    it('Should return an object with user\'s data', async () => {
+      chaiHttpResponse = await chai.request(app).post('/login').send({
+        email: 'first.user@test.com',
+        password: 'secret_admin'
+      });
       expect(chaiHttpResponse.body).to.be.an('object');
       expect(chaiHttpResponse.body).to.have.own.property('token');
       expect(chaiHttpResponse.body).to.be.deep.equal({

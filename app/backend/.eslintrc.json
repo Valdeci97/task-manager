@@ -27,6 +27,7 @@
     "no-underscore-dangle": "off",
     "no-console": "off",
     "camelcase": "warn",
+    "class-methods-use-this": "off",
     "arrow-parens": [
       2,
       "always"
