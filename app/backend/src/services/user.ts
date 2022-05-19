@@ -1,4 +1,4 @@
-import User from '../models/user';
+import User from '../database/models/user';
 
 class UserService {
   private _user;
