@@ -1,6 +1,6 @@
 module.exports = {
   async up(queryInterface, _Sequelize) {
-    await queryInterface.bulkInsert('taks', [{
+    await queryInterface.bulkInsert('tasks', [{
       id: '1',
       user_id: '1',
       content: 'Fazer um exercício do HackerRank por dia',
