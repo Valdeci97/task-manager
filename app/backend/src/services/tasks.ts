@@ -32,11 +32,26 @@ class TasksService {
   }
 
   public async destroyTask(id: string, token: string) {
-    const isValidToken = this.verifyToken(token);
-    const userExists = User.findOne({ where: { id: isValidToken.id } });
-    if (!userExists) return undefined;
-    await this._task.destroy({ where: { id } });
-    return 'OK';
+    try {
+      const isValidToken = this.verifyToken(token);
+      const userExists = User.findOne({ where: { id: isValidToken.id } });
+      if (!userExists) return undefined;
+      await this._task.destroy({ where: { id } });
+      return 'OK';
+    } catch (err) {
+      return err;
+    }
+  }
+
+  public async updateTask(task: ITask) {
+    try {
+      const userExists = User.findOne({ where: { id: task.id } });
+      if (!userExists) return undefined;
+      await this._task.update({ ...task }, { where: { id: task.id } });
+      return 'OK';
+    } catch (err) {
+      return err;
+    }
   }
 }
 
