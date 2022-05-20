@@ -15,7 +15,8 @@ class UserService {
     }
     const token = JWT.generateToken({ email, id: user.id });
     return {
-      user,
+      id: user.id,
+      email: user.email,
       token,
     };
   }
@@ -29,8 +30,7 @@ class UserService {
       email,
       password: cryptPassword,
     };
-    const result = await this._user.create(newUser);
-    console.log(result);
+    await this._user.create(newUser);
     return 'OK';
   }
 }

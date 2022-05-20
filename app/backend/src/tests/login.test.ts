@@ -26,7 +26,7 @@ describe('Testing POST route "/login"', () => {
     it('Should return status code 200', async () => {
       chaiHttpResponse = await chai.request(app).post('/login').send({
         email: 'first.user@test.com',
-        password: 'secret_admin'
+        password: '$2a$08$xi.Hxk1czAO0nZR..B393u10aED0RQ1N3PAEXQ7HxtLjKPEZBu.P'
       });
       expect(chaiHttpResponse.status).to.be.equal(200);
     });
@@ -34,15 +34,49 @@ describe('Testing POST route "/login"', () => {
     it('Should return an object with user\'s data', async () => {
       chaiHttpResponse = await chai.request(app).post('/login').send({
         email: 'first.user@test.com',
-        password: 'secret_admin'
+        password: '$2a$08$xi.Hxk1czAO0nZR..B393u10aED0RQ1N3PAEXQ7HxtLjKPEZBu.P'
       });
       expect(chaiHttpResponse.body).to.be.an('object');
-      expect(chaiHttpResponse.body).to.have.own.property('token');
-      expect(chaiHttpResponse.body).to.be.deep.equal({
-        id: '1',
-        email: 'first.user@test.com',
-        token: 'string qualquer',
-      });
+      expect(chaiHttpResponse.body.token).to.exist;
     })
   });
+});
+
+describe('Testing Post route /login with wrong information', () => {
+  let chaiHttpResponse: Response;
+  describe('When email is not informed', () => {
+    before(async () => {
+      sinon.stub(User, 'findOne').resolves({} as User);
+    });
+
+    after(() => { (User.findOne as sinon.SinonStub).restore(); });
+
+    it('Should return status code 400 and an error message', async () => {
+      chaiHttpResponse = await chai.request(app).post('/login').send({
+        email: '',
+        password: '154828252'
+      });
+      expect(chaiHttpResponse.status).to.be.equal(400);
+      expect(chaiHttpResponse.body.message).to.exist;
+      expect(chaiHttpResponse.body.message).to.be.equal('All fields must be filled');
+    });
+  });
+
+  describe('When password is not informed', () => {
+    before(async () => {
+      sinon.stub(User, 'findOne').resolves({} as User);
+    });
+
+    after(() => { (User.findOne as sinon.SinonStub).restore(); });
+
+    it('Should return status code 400 and an error message', async () => {
+      chaiHttpResponse = await chai.request(app).post('/login').send({
+        email: 'teste@test.com',
+        password: ''
+      });
+      expect(chaiHttpResponse.status).to.be.equal(400);
+      expect(chaiHttpResponse.body.message).to.exist;
+      expect(chaiHttpResponse.body.message).to.be.equal('All fields must be filled');
+    });
+  })
 });

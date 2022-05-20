@@ -17,7 +17,6 @@ class UserController {
       if (result.status) return res.status(result.status).json({ message: result.message });
       return res.status(200).json(result);
     } catch (err) {
-      console.log(err);
       next(err);
     }
   }
