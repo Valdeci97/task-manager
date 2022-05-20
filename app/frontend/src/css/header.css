@@ -1,0 +1,10 @@
+.header-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 5px;
+}
+
+.header-title {
+  font-weight: 700;
+  color: #141b14;
+}

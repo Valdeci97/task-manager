@@ -1,0 +1,44 @@
+.form-container {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  justify-content: center;
+}
+
+.email-label {
+  margin-bottom: 10px;
+}
+
+.password-label {
+  margin-top: 10px;
+}
+
+#email {
+  border-radius: 4px;
+  border: 1px solid #000;
+  height: 20px;
+  text-align: center;
+  width: 200px;
+}
+
+#senha {
+  border-radius: 4px;
+  border: 1px solid #000;
+  height: 20px;
+  text-align: center;
+  width: 200px;
+}
+
+.form-container button {
+  border-radius: 8px;
+  color: #AAA;
+  margin-top: 10px;
+  height: 25px;
+  width: 180px;
+}
+
+.form-container button:hover {
+  color: unset;
+  cursor: pointer;
+}
