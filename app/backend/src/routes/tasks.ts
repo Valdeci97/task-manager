@@ -9,4 +9,10 @@ taskRouter.get(
     .getTasks(req, res, next),
 );
 
+taskRouter.post(
+  '/',
+  (req: Request, res: Response, next: NextFunction) => tasksController
+    .createTask(req, res, next),
+);
+
 export default taskRouter;

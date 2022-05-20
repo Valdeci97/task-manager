@@ -1,5 +1,6 @@
 import { Request, Response, NextFunction } from 'express';
 import tasksService from '../services/tasks';
+import HttpException from '../exceptions/httpException';
 
 class TaskController {
   private _service;
@@ -17,6 +18,28 @@ class TaskController {
       return res.status(200).json(tasks);
     } catch (err) {
       next(err);
+    }
+  }
+
+  public async createTask(
+    req: Request,
+    res: Response,
+    next: NextFunction,
+  ): Promise<Response | void> {
+    try {
+      const { authorization } = req.headers;
+      if (!authorization) {
+        next(new HttpException(404, 'Token not found'));
+      } else {
+        this._service.verifyToken(authorization);
+        const createdTask = await this._service.createTask(req.body);
+        if (!createdTask) {
+          return res.status(400).json({ message: 'User does not exists' });
+        }
+        return res.status(201).json(createdTask);
+      }
+    } catch (err) {
+      next(new HttpException(400, 'Invalid Token'));
     }
   }
 }

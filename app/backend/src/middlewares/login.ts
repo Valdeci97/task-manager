@@ -17,8 +17,10 @@ class LoginValidate {
     const { password } = req.body;
     const { error } = passwordSchema.validate({ password });
     if (error) {
+      console.log(error);
       const [code, message] = error.message.split('/');
-      return res.status(parseInt(code, 10)).json({ message });
+      console.log(code);
+      return res.status(+code).json({ message });
     }
     next();
   };

@@ -9,4 +9,8 @@ export default class JWT {
   public static generateToken(user: IToken) {
     return jwt.sign(user, String(SECRET), config);
   }
+
+  public static validateToken(token: string) {
+    return jwt.verify(token, String(SECRET));
+  }
 }

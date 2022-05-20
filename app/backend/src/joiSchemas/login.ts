@@ -12,7 +12,9 @@ export const emailSchema = joi.object({
 });
 
 export const passwordSchema = joi.object({
-  'any.required': FIELDS,
-  'string.empty': FIELDS,
-  'string.min': INCORRECT,
+  password: joi.string().required().messages({
+    'any.required': FIELDS,
+    'string.empty': FIELDS,
+    'string.min': INCORRECT,
+  }),
 });
