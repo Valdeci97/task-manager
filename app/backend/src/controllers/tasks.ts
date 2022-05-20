@@ -42,6 +42,28 @@ class TaskController {
       next(new HttpException(400, 'Invalid Token'));
     }
   }
+
+  public async destroyTask(
+    req: Request,
+    res: Response,
+    next: NextFunction,
+  ): Promise<Response | void> {
+    try {
+      const { authorization } = req.headers;
+      const { id } = req.params;
+      if (!authorization) {
+        next(new HttpException(404, 'Token not found'));
+      } else {
+        const destroyedTask = this._service.destroyTask(id, authorization);
+        if (!destroyedTask) {
+          return res.status(400).json({ message: 'User does not exists' });
+        }
+        return res.status(204).end();
+      }
+    } catch (err) {
+      next(new HttpException(400, 'Invalid Token'));
+    }
+  }
 }
 
 export default new TaskController();

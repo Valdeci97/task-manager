@@ -14,7 +14,7 @@ class TasksService {
   }
 
   public verifyToken(token: string) {
-    return JWT.validateToken(token);
+    return JWT.validateToken(token) as User;
   }
 
   public async createTask(task: ITask) {
@@ -29,6 +29,14 @@ class TasksService {
     };
     await this._task.create(newTask);
     return newTask;
+  }
+
+  public async destroyTask(id: string, token: string) {
+    const isValidToken = this.verifyToken(token);
+    const userExists = User.findOne({ where: { id: isValidToken.id } });
+    if (!userExists) return undefined;
+    await this._task.destroy({ where: { id } });
+    return 'OK';
   }
 }
 

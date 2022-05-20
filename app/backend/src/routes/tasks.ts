@@ -15,4 +15,10 @@ taskRouter.post(
     .createTask(req, res, next),
 );
 
+taskRouter.delete(
+  '/:id',
+  (req: Request, res: Response, next: NextFunction) => tasksController
+    .destroyTask(req, res, next),
+);
+
 export default taskRouter;

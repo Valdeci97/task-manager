@@ -4,5 +4,4 @@ export default interface ITask {
   content: string;
   when: string;
   done: boolean;
-  token: string;
 }
