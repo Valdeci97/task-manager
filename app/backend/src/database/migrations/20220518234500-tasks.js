@@ -1,9 +1,9 @@
 module.exports = {
   async up(queryInterface, Sequelize) {
     await queryInterface.createTable('tasks', {
-      id: { primaryKey: true, type: Sequelize.STRING },
+      id: { primaryKey: true, type: Sequelize.UUID },
       userId: {
-        type: Sequelize.STRING,
+        type: Sequelize.INTEGER,
         allowNull: false,
         field: 'user_id',
         onUpdate: 'CASCADE',
