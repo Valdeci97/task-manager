@@ -30,3 +30,5 @@ Tasks.init({
 
 User.hasMany(Tasks, { foreignKey: 'user_id', as: 'tarefasUsuario' });
 Tasks.belongsTo(User, { foreignKey: 'user_id', as: 'tarefasUsuario' });
+
+export default Tasks;
