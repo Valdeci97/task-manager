@@ -1,5 +1,6 @@
 import express, { RequestHandler } from 'express';
 import loginRouter from './routes/login';
+import accountRouter from './routes/create-account';
 import errorMiddleware from './middlewares/error';
 
 class App {
@@ -20,6 +21,7 @@ class App {
     this.app.use(requestHandler);
     this.app.use(express.json());
     this.app.use('/login', loginRouter);
+    this.app.use('/create-account', accountRouter);
     this.app.use(errorMiddleware);
   }
 

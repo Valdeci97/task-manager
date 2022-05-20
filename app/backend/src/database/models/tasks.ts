@@ -1,4 +1,4 @@
-import { Model, STRING, BOOLEAN } from 'sequelize';
+import { Model, STRING, BOOLEAN, UUIDV4 } from 'sequelize';
 import db from '.';
 import User from './user';
 
@@ -15,7 +15,7 @@ class Tasks extends Model {
 }
 
 Tasks.init({
-  id: { type: STRING, primaryKey: true, allowNull: false },
+  id: { type: UUIDV4, primaryKey: true, allowNull: false },
   userId: { type: STRING, allowNull: false },
   content: { type: STRING, allowNull: false },
   when: { type: STRING, allowNull: false },
@@ -28,5 +28,5 @@ Tasks.init({
   modelName: 'tasks',
 });
 
-Tasks.belongsTo(User, { foreignKey: 'user_id', as: 'tarefasUsuario' });
 User.hasMany(Tasks, { foreignKey: 'user_id', as: 'tarefasUsuario' });
+Tasks.belongsTo(User, { foreignKey: 'user_id', as: 'tarefasUsuario' });

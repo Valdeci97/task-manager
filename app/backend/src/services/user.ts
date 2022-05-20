@@ -1,6 +1,7 @@
-import { compareSync } from 'bcryptjs';
+import { compareSync, hash } from 'bcryptjs';
 import User from '../database/models/user';
 import JWT from '../helpers/jwt';
+import IUser from '../interfaces/user';
 
 class UserService {
   private _user;
@@ -17,6 +18,20 @@ class UserService {
       user,
       token,
     };
+  }
+
+  public async createUser(user: IUser) {
+    const { email, password } = user;
+    const emailExists = await this._user.findOne({ where: { email } });
+    if (emailExists) return { status: 409, message: 'Email already exists' };
+    const cryptPassword = await hash(password, 3);
+    const newUser = {
+      email,
+      password: cryptPassword,
+    };
+    const result = await this._user.create(newUser);
+    console.log(result);
+    return 'OK';
   }
 }
 
