@@ -44,6 +44,20 @@
     ],
     "prettier/prettier": "error",
     "react/prop-types": "off",
-    "react/react-in-jsx-scope": "off"
+    "react/react-in-jsx-scope": "off",
+    "react/jsx-indent-props": ["error", 2],
+    "react/jsx-tag-spacing": [
+      "error",
+      {
+        "closingSlash": "never",
+        "beforeSelfClosing": "always",
+        "afterOpening": "never",
+        "beforeClosing": "never"
+      }
+    ],
+    "react-hooks/exhaustive-deps": "warn",
+    "react/jsx-closing-bracket-location": ["error"],
+    "react/jsx-closing-tag-location": ["error"],
+    "react/jsx-first-prop-new-line": ["error", "multiline"]
   }
 }
