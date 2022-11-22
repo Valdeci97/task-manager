@@ -1,3 +1,11 @@
+import Router from './Router';
+import GlobalStyle from './styles';
+
 export default function App() {
-  return <>Hello World.</>;
+  return (
+    <>
+      <Router />
+      <GlobalStyle />
+    </>
+  );
 }
