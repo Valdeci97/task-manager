@@ -11,7 +11,7 @@ export default function PasswordLabel({
   value,
   handleChange,
 }: LabelProps) {
-  const [reveal, setReveal] = useState<boolean>(false);
+  const [reveal, setReveal] = useState<boolean>(true);
 
   return (
     <SHARED.Label htmlFor={id}>

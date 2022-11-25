@@ -24,7 +24,7 @@ export default function LoginForm() {
           handleChange={setPassword}
           text={'senha'}
         />
-        <Button text="Entrar" />
+        <Button text="Entrar" email={email} password={password} />
       </SL.Container>
     </>
   );
