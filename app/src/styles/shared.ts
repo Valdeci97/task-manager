@@ -44,6 +44,7 @@ const Button = styled.button<Theme>`
   color: #fff;
   font-size: 1.5rem;
   height: 2rem;
+  margin-bottom: 1rem;
   width: 8rem;
 
   &:hover {
