@@ -24,3 +24,10 @@ export interface ToastContainerProps {
   color: string;
   borderBottomColor: string;
 }
+
+export interface CreateToast {
+  title: string;
+  content: string;
+  duration: number;
+  theme: string;
+}

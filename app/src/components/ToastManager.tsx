@@ -6,15 +6,23 @@ class ToastManager {
   private root: Root;
   private toasts: ToastProps[] = [];
   private colors = {
-    sucess: '#5E9E57',
+    success: '#5E9E57',
     error: '#F72626',
     warn: '#FF871F',
   };
 
-  constructor() {
+  constructor(bottom = '10vh', rigth = '5%', width = '15rem') {
     const [body] = document.getElementsByTagName('body');
     const toastContainer = document.createElement('div');
     toastContainer.id = 'toast-container';
+    toastContainer.style.alignItems = 'center';
+    toastContainer.style.bottom = bottom;
+    toastContainer.style.display = 'flex';
+    toastContainer.style.flexDirection = 'column';
+    toastContainer.style.position = 'fixed';
+    toastContainer.style.right = rigth;
+    toastContainer.style.width = width;
+    toastContainer.style.zIndex = '10';
     body.insertAdjacentElement('beforeend', toastContainer);
     this.root = createRoot(toastContainer);
   }
@@ -30,12 +38,12 @@ class ToastManager {
     this.render();
   }
 
-  public sucess(options: ToastOptions): void {
+  public success(options: ToastOptions): void {
     const toastId = this.generateId();
     const toast = {
       id: toastId,
-      color: this.colors.sucess,
-      borderBottomColor: this.colors.sucess,
+      color: this.colors.success,
+      borderBottomColor: this.colors.success,
       ...options,
       destroy: () => this.destroy(options.id ?? toastId),
     };
