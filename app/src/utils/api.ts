@@ -1,4 +1,4 @@
-import axios, { AxiosError } from 'axios';
+import axios from 'axios';
 import { Login } from '../interfaces/api/Login';
 
 const URL = 'https://todo-api-dev.onrender.com';
@@ -8,7 +8,7 @@ const API = axios.create({
   timeout: 1000 * 5,
 });
 
-function AxiosErrorHandler(err: unknown): AxiosError | null {
+function AxiosErrorHandler(err: unknown) {
   if (axios.isAxiosError(err) && err.response) return err.response.data;
   return null;
 }
@@ -16,7 +16,7 @@ function AxiosErrorHandler(err: unknown): AxiosError | null {
 export async function login(
   email: string,
   password: string,
-): Promise<Login | AxiosError | null> {
+): Promise<Login | null> {
   try {
     const response = await API.post('/login', { email, password });
     return response.data;

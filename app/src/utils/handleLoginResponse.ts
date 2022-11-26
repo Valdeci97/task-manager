@@ -1,10 +1,10 @@
-import { AxiosError } from 'axios';
 import { toast } from '../components/ToastManager';
 import { Login } from '../interfaces/api/Login';
 import { toastConfig } from '../utils/constants';
+import { storageHandler } from '../utils/localStorage';
 
 export function handleLoginResponse(
-  response: Login | AxiosError | null,
+  response: Login | null,
   theme: string,
 ): void {
   if (!response) {
@@ -23,6 +23,7 @@ export function handleLoginResponse(
       theme,
     });
   }
+  storageHandler.setByKey('token', response.login.token);
   return toast.success({
     title: toastConfig.messages.login.success.title,
     content: toastConfig.messages.login.success.content,

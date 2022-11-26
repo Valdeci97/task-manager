@@ -18,7 +18,7 @@ export default function Button({
       return;
     }
     const isNotValid = validateLogin(email, password, theme);
-    if (isNotValid) return toast.error({ ...isNotValid });
+    if (isNotValid) return toast.warn({ ...isNotValid });
     const response = await login(email, password);
     handleLoginResponse(response, theme);
   }
