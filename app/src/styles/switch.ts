@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { styleConfig } from '../utils/constants';
 
 const Theme = styled.label`
   align-items: center;
@@ -19,7 +20,7 @@ const Theme = styled.label`
   }
 
   span {
-    background-color: #54c7c9;
+    background-color: ${styleConfig.shared.button.light.backgroundColor};
     border-radius: 1rem;
     cursor: pointer;
     left: 0;
@@ -29,7 +30,7 @@ const Theme = styled.label`
   }
 
   input:checked + span {
-    background: #d4520c;
+    background: ${styleConfig.shared.button.dark.backgroundColor};
     left: 70%;
   }
 `;

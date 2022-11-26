@@ -7,6 +7,7 @@ export default function Input({
   id,
   value,
   handleChange,
+  theme,
 }: TextInputProps) {
   const email = 'seu_email@email.com';
   const pass = '********';
@@ -20,6 +21,7 @@ export default function Input({
         handleChange(target.value)
       }
       placeholder={type ? pass : email}
+      theme={theme}
     />
   );
 }

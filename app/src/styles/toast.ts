@@ -1,5 +1,6 @@
 import styled, { keyframes } from 'styled-components';
 import { ToastContainerProps } from '../interfaces/Toast';
+import { styleConfig } from '../utils/constants';
 
 const slideIn = keyframes`
   from {
@@ -14,7 +15,7 @@ const slideIn = keyframes`
 const Container = styled.div<ToastContainerProps>`
   animation: ${slideIn} 0.5s;
   background-color: ${(props) =>
-    props.theme === 'light' ? '#1B1F22' : '#F4F7F3'};
+    props.theme === 'light' ? styleConfig.theme.dark : styleConfig.theme.light};
   border-radius: 1rem;
   border-bottom: solid 15px ${(props) => props.borderBottomColor};
   color: ${(props) => props.color};

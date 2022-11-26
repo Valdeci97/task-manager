@@ -1,12 +1,15 @@
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import Label from './Label';
 import Button from './Button';
 import { SL } from '../styles/login';
 import PasswordLabel from './PasswordLabel';
+import { AppCtx } from '../context/Provider';
 
 export default function LoginForm() {
   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
+
+  const { theme } = useContext(AppCtx);
 
   return (
     <>
@@ -16,6 +19,7 @@ export default function LoginForm() {
           value={email}
           handleChange={setEmail}
           text={'e-mail'}
+          theme={theme}
         />
         <PasswordLabel
           type="password"
@@ -23,8 +27,9 @@ export default function LoginForm() {
           value={password}
           handleChange={setPassword}
           text={'senha'}
+          theme={theme}
         />
-        <Button text="Entrar" email={email} password={password} />
+        <Button text="Entrar" email={email} password={password} theme={theme} />
       </SL.Container>
     </>
   );

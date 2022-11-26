@@ -1,4 +1,8 @@
 import { createGlobalStyle } from 'styled-components';
+import { styleConfig } from '../utils/constants';
+
+const { dark } = styleConfig.theme;
+const { light } = styleConfig.theme;
 
 export default createGlobalStyle<{ theme: string }>`
   * {
@@ -12,7 +16,7 @@ export default createGlobalStyle<{ theme: string }>`
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    background: ${(props) => (props.theme === 'light' ? '#F4F7F3' : '#1B1F22')};
+    background: ${(props) => (props.theme === 'light' ? light : dark)};
   }
 
   body html #root {

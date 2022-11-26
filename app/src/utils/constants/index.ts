@@ -30,3 +30,20 @@ export const toastConfig = {
     },
   },
 };
+
+export const styleConfig = {
+  theme: {
+    light: '#F4F7F3',
+    dark: '#1B1F22',
+  },
+  shared: {
+    button: {
+      light: {
+        backgroundColor: '#54c7c9',
+      },
+      dark: {
+        backgroundColor: '#EE7C2F',
+      },
+    },
+  },
+};

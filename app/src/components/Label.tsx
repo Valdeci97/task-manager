@@ -8,11 +8,18 @@ export default function Label({
   id,
   value,
   handleChange,
+  theme,
 }: LabelProps) {
   return (
-    <SHARED.Label htmlFor={id}>
+    <SHARED.Label htmlFor={id} theme={theme}>
       {text}
-      <Input type={type} value={value} id={id} handleChange={handleChange} />
+      <Input
+        type={type}
+        value={value}
+        id={id}
+        handleChange={handleChange}
+        theme={theme}
+      />
     </SHARED.Label>
   );
 }

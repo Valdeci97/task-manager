@@ -1,16 +1,29 @@
 import styled from 'styled-components';
+import { styleConfig } from '../utils/constants';
 
-const Input = styled.input`
+const light = styleConfig.shared.button.light;
+const dark = styleConfig.shared.button.dark;
+
+type Theme = { theme: string };
+
+const Input = styled.input<Theme>`
   background-color: transparent;
   border: none;
-  border-bottom: solid 1px #000;
+  border-bottom: solid 1px
+    ${(props) => (props.theme === 'light' ? '#000' : dark.backgroundColor)};
+  color: ${(props) => (props.theme === 'light' ? '#000' : '#fff')};
   height: 2.25rem;
   margin: 1rem 0;
   text-align: center;
+
+  &::placeholder {
+    color: ${(props) => (props.theme === 'light' ? '#000' : '#fff')};
+  }
 `;
 
-const Label = styled.label`
+const Label = styled.label<Theme>`
   align-items: center;
+  color: ${(props) => (props.theme === 'light' ? '#000' : '#fff')};
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -23,8 +36,9 @@ const Image = styled.img`
   left: 54vw;
 `;
 
-const Button = styled.button`
-  background-color: #54c7c9;
+const Button = styled.button<Theme>`
+  background-color: ${(props) =>
+    props.theme === 'light' ? light.backgroundColor : dark.backgroundColor};
   border: none;
   border-radius: 0.5rem;
   color: #fff;

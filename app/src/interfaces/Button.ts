@@ -3,4 +3,5 @@ export interface ButtonProps {
   email: string;
   password: string;
   text: string;
+  theme: string;
 }

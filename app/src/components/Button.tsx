@@ -1,5 +1,3 @@
-import { useContext } from 'react';
-import { AppCtx } from '../context/Provider';
 import { ButtonProps } from '../interfaces/Button';
 import { SHARED } from '../styles/shared';
 import { login } from '../utils/api';
@@ -7,9 +5,13 @@ import { handleLoginResponse } from '../utils/handleLoginResponse';
 import { validateLogin } from '../utils/validateLogin';
 import { toast } from './ToastManager';
 
-export default function Button({ name, email, password, text }: ButtonProps) {
-  const { theme } = useContext(AppCtx);
-
+export default function Button({
+  name,
+  email,
+  password,
+  text,
+  theme,
+}: ButtonProps) {
   async function handleFetch(): Promise<void> {
     if (name) {
       console.log(name, email, password);
@@ -22,7 +24,7 @@ export default function Button({ name, email, password, text }: ButtonProps) {
   }
 
   return (
-    <SHARED.Button type="button" onClick={handleFetch}>
+    <SHARED.Button type="button" onClick={handleFetch} theme={theme}>
       {text}
     </SHARED.Button>
   );

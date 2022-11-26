@@ -19,7 +19,7 @@ export default function Header(): JSX.Element {
 
   return (
     <>
-      <SH.Container>
+      <SH.Container theme={theme}>
         <header>
           <h1>Task manager - organizando sua rotina</h1>
         </header>
