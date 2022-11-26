@@ -2,6 +2,7 @@ import { useContext } from 'react';
 import { AppCtx } from '../context/Provider';
 import { SH } from '../styles/header';
 import { SW } from '../styles/switch';
+import { storageHandler } from '../utils/localStorage';
 
 export default function Header(): JSX.Element {
   const { theme, setTheme } = useContext(AppCtx);
@@ -9,8 +10,10 @@ export default function Header(): JSX.Element {
   function handleTheme(): void {
     const isLight = theme === 'light';
     if (isLight) {
+      storageHandler.setByKey('theme', 'dark');
       return setTheme('dark');
     }
+    storageHandler.setByKey('theme', 'light');
     setTheme('light');
   }
 
@@ -26,6 +29,7 @@ export default function Header(): JSX.Element {
             role="switch"
             name="theme-handler"
             id="theme"
+            checked={theme === 'dark'}
             onChange={handleTheme}
           />
           <span />
