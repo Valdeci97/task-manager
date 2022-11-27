@@ -3,7 +3,7 @@ import { AppCtx } from '../context/Provider';
 import { SSGNP } from '../styles/signup';
 import Button from './Button';
 import Label from './Label';
-import SignupLabel from './SignupLabel';
+import PasswordLabel from './PasswordLabel';
 
 export default function SignupForm() {
   const [name, setName] = useState<string>('');
@@ -30,7 +30,7 @@ export default function SignupForm() {
           theme={theme}
           placeholder={'seu_email@email.com'}
         />
-        <SignupLabel
+        <PasswordLabel
           type={'password'}
           text={'senha'}
           value={password}

@@ -21,26 +21,23 @@ const Input = styled.input<Theme>`
   }
 `;
 
+const LabelContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 15rem;
+`;
+
 const Label = styled.label<Theme>`
   align-items: center;
   color: ${(props) => (props.theme === 'light' ? '#000' : '#fff')};
   display: flex;
-  flex-direction: column;
-  justify-content: center;
+  justify-content: space-around;
 `;
 
 const Image = styled.img`
   height: 1.6rem;
   position: absolute;
-  bottom: 47vh;
-  left: 54vw;
-`;
-
-const SignupImage = styled.img`
-  height: 1.6rem;
-  position: absolute;
-  bottom: 37vh;
-  left: 54vw;
+  left: 56.5%;
 `;
 
 const Button = styled.button<Theme>`
@@ -64,8 +61,8 @@ const Button = styled.button<Theme>`
 
 export const SHARED = {
   Input,
+  LabelContainer,
   Label,
   Image,
   Button,
-  SignupImage,
 };

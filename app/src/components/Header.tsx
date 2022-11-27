@@ -21,7 +21,7 @@ export default function Header(): JSX.Element {
     <>
       <SH.Container theme={theme}>
         <header>
-          <h1>Task manager - organizando sua rotina</h1>
+          <h1>Task manager</h1>
         </header>
         <SW.Theme htmlFor="theme">
           <input

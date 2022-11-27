@@ -16,23 +16,25 @@ export default function PasswordLabel({
 }: LabelProps) {
   const [reveal, setReveal] = useState<boolean>(true);
   return (
-    <SHARED.Label htmlFor={id} theme={theme}>
-      {text}
-      <Input
-        type={reveal ? type : 'text'}
-        id={id}
-        value={value}
-        handleChange={handleChange}
-        theme={theme}
-        placeholder={placeholder}
-      />
-      {value.length > 0 ? (
-        <SHARED.Image
-          onClick={() => setReveal(!reveal)}
-          src={reveal ? revealPass(theme) : hidePass(theme)}
-          alt={reveal ? eye.invisible.alt : eye.visible.alt}
+    <SHARED.LabelContainer>
+      <SHARED.Label htmlFor={id} theme={theme}>
+        {text}
+        <Input
+          type={reveal ? type : 'text'}
+          id={id}
+          value={value}
+          handleChange={handleChange}
+          theme={theme}
+          placeholder={placeholder}
         />
-      ) : null}
-    </SHARED.Label>
+        {value.length > 0 ? (
+          <SHARED.Image
+            onClick={() => setReveal(!reveal)}
+            src={reveal ? revealPass(theme) : hidePass(theme)}
+            alt={reveal ? eye.invisible.alt : eye.visible.alt}
+          />
+        ) : null}
+      </SHARED.Label>
+    </SHARED.LabelContainer>
   );
 }

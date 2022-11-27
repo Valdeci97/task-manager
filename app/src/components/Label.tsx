@@ -12,16 +12,18 @@ export default function Label({
   placeholder,
 }: LabelProps) {
   return (
-    <SHARED.Label htmlFor={id} theme={theme}>
-      {text}
-      <Input
-        type={type}
-        value={value}
-        id={id}
-        handleChange={handleChange}
-        theme={theme}
-        placeholder={placeholder}
-      />
-    </SHARED.Label>
+    <SHARED.LabelContainer>
+      <SHARED.Label htmlFor={id} theme={theme}>
+        {text}
+        <Input
+          type={type}
+          value={value}
+          id={id}
+          handleChange={handleChange}
+          theme={theme}
+          placeholder={placeholder}
+        />
+      </SHARED.Label>
+    </SHARED.LabelContainer>
   );
 }
