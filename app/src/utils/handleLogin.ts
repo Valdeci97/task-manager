@@ -1,5 +1,5 @@
 import { toast } from '../components/ToastManager';
-import { Login } from '../interfaces/api/Login';
+import { Login } from '../interfaces/api/Users';
 import { login } from './api';
 import { toastConfig } from './constants';
 import { storageHandler } from './localStorage';
@@ -8,15 +8,15 @@ import { validateLogin } from './validate';
 function handleLoginResponse(response: Login | null, theme: string): void {
   if (!response) {
     return toast.warn({
-      title: toastConfig.messages.login.err.title,
-      content: toastConfig.messages.login.err.content,
+      title: toastConfig.messages.sleepApi.warn.title,
+      content: toastConfig.messages.sleepApi.warn.content,
       duration: toastConfig.duration,
       theme,
     });
   }
   if (response.message) {
     return toast.error({
-      title: toastConfig.messages.login.warn.title,
+      title: toastConfig.messages.login.err.title,
       content: response.message,
       duration: toastConfig.duration,
       theme,

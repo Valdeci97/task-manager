@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { Login } from '../interfaces/api/Login';
+import { HttpException, Login } from '../interfaces/api/Users';
 
 const URL = 'https://todo-api-dev.onrender.com';
 
@@ -19,6 +19,19 @@ export async function login(
 ): Promise<Login | null> {
   try {
     const response = await API.post('/login', { email, password });
+    return response.data;
+  } catch (err) {
+    return AxiosErrorHandler(err);
+  }
+}
+
+export async function createUser(
+  name: string,
+  email: string,
+  password: string,
+): Promise<HttpException | null> {
+  try {
+    const response = await API.post('/users', { name, email, password });
     return response.data;
   } catch (err) {
     return AxiosErrorHandler(err);

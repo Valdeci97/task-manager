@@ -1,16 +1,27 @@
 export const toastConfig = {
   messages: {
-    login: {
-      err: {
+    sleepApi: {
+      warn: {
         title: 'ERRO!',
         content: 'API fora do ar! Tente novamente em alguns instantes...',
       },
-      warn: {
+    },
+    login: {
+      err: {
         title: 'Falha no login!',
       },
       success: {
         title: 'Login bem sucedido!',
         content: 'Você será redirecionado em breve.',
+      },
+    },
+    createUser: {
+      err: {
+        title: 'Falha ao criar usuário!',
+      },
+      success: {
+        title: 'Usuário criado!',
+        content: 'Você já pode fazer login.',
       },
     },
   },
