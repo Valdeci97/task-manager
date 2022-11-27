@@ -15,7 +15,7 @@ export const toastConfig = {
     },
   },
   duration: 4500,
-  validateLogin: {
+  validate: {
     emptyFields: {
       title: 'Campo(s) vazio(s)',
       content: 'Preencha todos os campos',
@@ -24,9 +24,13 @@ export const toastConfig = {
       title: 'Email inválido',
       content: 'O email deve seguir o padrão "teste@teste.com"',
     },
-    minLength: {
+    passMinLength: {
       title: 'Senha curta',
       content: 'A senha deve ter pelo menos 8 caracteres',
+    },
+    nameMinLength: {
+      title: 'Nome inválido',
+      content: 'O nome deve ter pelo menos 3 caracteres',
     },
   },
 };

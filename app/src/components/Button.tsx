@@ -1,9 +1,7 @@
 import { ButtonProps } from '../interfaces/Button';
 import { SHARED } from '../styles/shared';
-import { login } from '../utils/api';
-import { handleLoginResponse } from '../utils/handleLoginResponse';
-import { validateLogin } from '../utils/validateLogin';
-import { toast } from './ToastManager';
+import { handleCreateUser } from '../utils/handleCreateUser';
+import { handleLogin } from '../utils/handleLogin';
 
 export default function Button({
   name,
@@ -14,13 +12,9 @@ export default function Button({
 }: ButtonProps) {
   async function handleFetch(): Promise<void> {
     if (name) {
-      console.log(name, email, password);
-      return;
+      return await handleCreateUser(name, email, password, theme);
     }
-    const toastInfo = validateLogin(email, password, theme);
-    if (toastInfo) return toast.warn({ ...toastInfo });
-    const response = await login(email, password);
-    handleLoginResponse(response, theme);
+    await handleLogin(email, password, theme);
   }
 
   return (

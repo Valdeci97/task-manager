@@ -1,12 +1,11 @@
 import { toast } from '../components/ToastManager';
 import { Login } from '../interfaces/api/Login';
-import { toastConfig } from '../utils/constants';
-import { storageHandler } from '../utils/localStorage';
+import { login } from './api';
+import { toastConfig } from './constants';
+import { storageHandler } from './localStorage';
+import { validateLogin } from './validate';
 
-export function handleLoginResponse(
-  response: Login | null,
-  theme: string,
-): void {
+function handleLoginResponse(response: Login | null, theme: string): void {
   if (!response) {
     return toast.warn({
       title: toastConfig.messages.login.err.title,
@@ -30,4 +29,15 @@ export function handleLoginResponse(
     duration: toastConfig.duration,
     theme,
   });
+}
+
+export async function handleLogin(
+  email: string,
+  password: string,
+  theme: string,
+): Promise<void> {
+  const toastInfo = validateLogin(email, password, theme);
+  if (toastInfo) return toast.warn({ ...toastInfo });
+  const response = await login(email, password);
+  handleLoginResponse(response, theme);
 }
