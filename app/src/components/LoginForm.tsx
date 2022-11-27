@@ -26,14 +26,16 @@ export default function LoginForm() {
           handleChange={setEmail}
           text={'e-mail'}
           theme={theme}
+          placeholder={'seu_email@email.com'}
         />
         <PasswordLabel
-          type="password"
+          type={'password'}
           id={'password-input'}
           value={password}
           handleChange={setPassword}
           text={'senha'}
           theme={theme}
+          placeholder={'********'}
         />
         <Button text="Entrar" email={email} password={password} theme={theme} />
         <SHARED.Button type="button" theme={theme} onClick={redirect}>

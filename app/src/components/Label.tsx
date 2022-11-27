@@ -9,6 +9,7 @@ export default function Label({
   value,
   handleChange,
   theme,
+  placeholder,
 }: LabelProps) {
   return (
     <SHARED.Label htmlFor={id} theme={theme}>
@@ -19,6 +20,7 @@ export default function Label({
         id={id}
         handleChange={handleChange}
         theme={theme}
+        placeholder={placeholder}
       />
     </SHARED.Label>
   );

@@ -32,7 +32,14 @@ const Label = styled.label<Theme>`
 const Image = styled.img`
   height: 1.6rem;
   position: absolute;
-  bottom: 42vh;
+  bottom: 47vh;
+  left: 54vw;
+`;
+
+const SignupImage = styled.img`
+  height: 1.6rem;
+  position: absolute;
+  bottom: 37vh;
   left: 54vw;
 `;
 
@@ -60,4 +67,5 @@ export const SHARED = {
   Label,
   Image,
   Button,
+  SignupImage,
 };

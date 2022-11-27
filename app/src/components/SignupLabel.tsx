@@ -3,9 +3,9 @@ import Input from './Input';
 import { LabelProps } from '../interfaces/Label';
 import { SHARED } from '../styles/shared';
 import { eye } from '../assets/icons';
-import { revealPass, hidePass } from '../utils/password';
+import { hidePass, revealPass } from '../utils/password';
 
-export default function PasswordLabel({
+export default function SignupLabel({
   text,
   type,
   id,
@@ -27,7 +27,7 @@ export default function PasswordLabel({
         placeholder={placeholder}
       />
       {value.length > 0 ? (
-        <SHARED.Image
+        <SHARED.SignupImage
           onClick={() => setReveal(!reveal)}
           src={reveal ? revealPass(theme) : hidePass(theme)}
           alt={reveal ? eye.invisible.alt : eye.visible.alt}

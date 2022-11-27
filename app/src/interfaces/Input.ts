@@ -6,4 +6,5 @@ export interface TextInputProps {
   value: string;
   handleChange: Dispatch<SetStateAction<string>>;
   theme: string;
+  placeholder: string;
 }

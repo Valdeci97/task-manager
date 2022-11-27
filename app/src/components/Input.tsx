@@ -8,10 +8,8 @@ export default function Input({
   value,
   handleChange,
   theme,
+  placeholder,
 }: TextInputProps) {
-  const email = 'seu_email@email.com';
-  const pass = '********';
-
   return (
     <SHARED.Input
       type={type ? type : 'text'}
@@ -20,7 +18,7 @@ export default function Input({
       onChange={({ target }: ChangeEvent<HTMLInputElement>) =>
         handleChange(target.value)
       }
-      placeholder={type ? pass : email}
+      placeholder={placeholder}
       theme={theme}
     />
   );
