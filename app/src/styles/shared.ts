@@ -38,6 +38,30 @@ const Image = styled.img`
   height: 1.6rem;
   position: absolute;
   left: 56.5%;
+
+  @media (max-width: 440px) {
+    left: 72.5%;
+  }
+
+  @media (min-width: 441px) and (max-width: 500px) {
+    left: 70%;
+  }
+
+  @media (min-width: 501px) and (max-width: 620px) {
+    left: 65%;
+  }
+
+  @media (min-width: 621px) and (max-width: 720px) {
+    left: 62.5%;
+  }
+
+  @media (min-width: 721px) and (max-width: 960px) {
+    left: 60%;
+  }
+
+  @media (min-width: 961px) and (max-width: 1200px) {
+    left: 58%;
+  }
 `;
 
 const Button = styled.button<Theme>`
