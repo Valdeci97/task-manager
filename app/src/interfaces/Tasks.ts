@@ -8,3 +8,12 @@ export interface UserTasks {
   done: boolean;
   createdAt: string;
 }
+
+export interface TaskProps {
+  id: string;
+  category: string;
+  title: string;
+  description: string;
+  when: string;
+  done: boolean;
+}

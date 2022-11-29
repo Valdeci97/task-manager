@@ -1,8 +1,8 @@
 import styled from 'styled-components';
 import { styleConfig } from '../utils/constants';
 
-const light = styleConfig.shared.button.light;
-const dark = styleConfig.shared.button.dark;
+const { light } = styleConfig.shared.button;
+const { dark } = styleConfig.shared.button;
 
 type Theme = { theme: string };
 
