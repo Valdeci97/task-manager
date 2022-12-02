@@ -40,10 +40,12 @@ export async function createUser(
   }
 }
 
-export async function getTasks(token: string): Promise<UserTasks[]> {
-  const response = await API.get('/tasks', {
+export async function getTasks(
+  token: string,
+  url: string,
+): Promise<UserTasks[]> {
+  const response = await API.get(url, {
     headers: { authorization: token },
   });
-  console.log(response);
   return response.data;
 }

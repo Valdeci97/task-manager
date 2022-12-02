@@ -1,27 +1,24 @@
-import { useContext, useState } from 'react';
+import { useContext } from 'react';
 import { AppCtx } from '../context/Provider';
+import { TaskMenuProps } from '../interfaces/TaskMenu';
 import { STM } from '../styles/taskMenu';
 
-const filterOptions = ['Todas', 'Hoje', 'Semana', 'Mês', 'Ano', 'Atrasadas'];
-
-export default function TaskMenu() {
-  const [isActive, setIsActive] = useState<string>('Todas');
+export default function TaskMenu({
+  handleClick,
+  isActive,
+  text,
+}: TaskMenuProps) {
   const { theme } = useContext(AppCtx);
 
   return (
-    <STM.Container>
-      {filterOptions.map((filter, index) => (
-        <STM.Filter
-          key={`x-${index}`}
-          type="button"
-          onClick={({ currentTarget }) => setIsActive(currentTarget.value)}
-          value={filter}
-          isActive={isActive === filter}
-          theme={theme}
-        >
-          {filter}
-        </STM.Filter>
-      ))}
-    </STM.Container>
+    <STM.Filter
+      type="button"
+      onClick={({ currentTarget }) => handleClick(currentTarget.value)}
+      value={text}
+      isActive={isActive}
+      theme={theme}
+    >
+      {text}
+    </STM.Filter>
   );
 }

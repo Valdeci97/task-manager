@@ -23,6 +23,7 @@ function handleLoginResponse(response: Login | null, theme: string): void {
     });
   }
   storageHandler.setByKey('token', response.login.token);
+  storageHandler.setByKey('userId', response.login.user.id);
   return toast.success({
     title: toastConfig.messages.login.success.title,
     content: toastConfig.messages.login.success.content,
