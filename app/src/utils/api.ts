@@ -49,3 +49,15 @@ export async function getTasks(
   });
   return response.data;
 }
+
+export async function getTaskById(
+  token: string,
+  url: string,
+): Promise<UserTasks> {
+  try {
+    const response = await API.get(url, { headers: { authorization: token } });
+    return response.data.task;
+  } catch (err) {
+    return AxiosErrorHandler(err);
+  }
+}

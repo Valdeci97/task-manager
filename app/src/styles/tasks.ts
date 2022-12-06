@@ -7,7 +7,7 @@ const Container = styled.div`
 `;
 
 const Link = styled.a`
-  color: #000;
+  color: ${(props) => (props.theme === 'light' ? '#000' : '#fff')};
   text-decoration: none;
 `;
 

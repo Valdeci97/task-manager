@@ -9,6 +9,10 @@ export interface UserTasks {
   createdAt: string;
 }
 
+export interface UserTasksById {
+  task: UserTasks;
+}
+
 export interface TaskProps {
   id: string;
   category: string;
