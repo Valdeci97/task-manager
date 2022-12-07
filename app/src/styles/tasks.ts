@@ -4,6 +4,10 @@ const Container = styled.div`
   display: flex;
   height: 75vh;
   justify-content: space-evenly;
+
+  @media (max-width: 680px) {
+    flex-direction: column;
+  }
 `;
 
 const Link = styled.a`
@@ -17,7 +21,7 @@ const CardContainer = styled.div`
   display: flex;
   flex-direction: column;
   height: 10rem;
-  justify-content: center;
+  justify-content: space-evenly;
 `;
 
 export const STSK = {

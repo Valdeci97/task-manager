@@ -23,6 +23,14 @@ const Filter = styled.button<{ isActive: boolean }>`
     opacity: 1;
     text-decoration: underline;
   }
+
+  @media (max-width: 440px) {
+    font-size: 1rem;
+  }
+
+  @media (min-width: 441px) and (max-width: 540px) {
+    font-size: 1.15rem;
+  }
 `;
 
 export const STM = {

@@ -61,3 +61,11 @@ export async function getTaskById(
     return AxiosErrorHandler(err);
   }
 }
+
+export async function deleteTask(token: string, url: string): Promise<void> {
+  try {
+    await API.delete(url, { headers: { authorization: token } });
+  } catch (err) {
+    return AxiosErrorHandler(err);
+  }
+}
