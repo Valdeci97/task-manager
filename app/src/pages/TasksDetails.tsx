@@ -8,6 +8,8 @@ import { UserTasks } from '../interfaces/Tasks';
 import { getTaskById } from '../utils/api';
 import { storageHandler } from '../utils/localStorage';
 
+const token = storageHandler.getByKey('token') || '';
+
 export default function TasksDetails() {
   const [title, setTitle] = useState<string>('');
   const [description, setDescription] = useState<string>('');
@@ -24,8 +26,6 @@ export default function TasksDetails() {
 
   const { theme } = useContext(AppCtx);
 
-  const token = storageHandler.getByKey('token') || '';
-
   useEffect(() => {
     getTaskById(token, url)
       .then((res) => handleInitialState(res))
@@ -37,7 +37,7 @@ export default function TasksDetails() {
           theme: storageHandler.getByKey('theme') || 'light',
         }),
       );
-  }, [token, url]);
+  }, [url]);
 
   return (
     <>

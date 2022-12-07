@@ -6,7 +6,7 @@ const URL = 'https://todo-api-dev.onrender.com';
 
 export const API = axios.create({
   baseURL: URL,
-  timeout: 1000 * 5,
+  timeout: 1000 * 5, // 5 seconds
   headers: { post: { setContentType: 'application/json' } },
 });
 
