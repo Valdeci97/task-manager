@@ -19,6 +19,14 @@ const Input = styled.input<Theme>`
   &::placeholder {
     color: ${(props) => (props.theme === 'light' ? '#000' : '#fff')};
   }
+
+  &[type='date']::-webkit-calendar-picker-indicator {
+    filter: invert(${(props) => (props.theme === 'light' ? 0 : 1)});
+  }
+
+  &[type='time']::-webkit-calendar-picker-indicator {
+    filter: invert(${(props) => (props.theme === 'light' ? 0 : 1)});
+  }
 `;
 
 const LabelContainer = styled.div`

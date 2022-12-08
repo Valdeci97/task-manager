@@ -3,11 +3,11 @@ import { HttpException, Login } from '../interfaces/api/Users';
 import { UserTasks } from '../interfaces/Tasks';
 
 const URL = 'https://todo-api-dev.onrender.com';
+const contentType = 'application/json';
 
 export const API = axios.create({
   baseURL: URL,
   timeout: 1000 * 5, // 5 seconds
-  headers: { post: { setContentType: 'application/json' } },
 });
 
 function AxiosErrorHandler(err: unknown) {
@@ -20,7 +20,12 @@ export async function login(
   password: string,
 ): Promise<Login | null> {
   try {
-    const response = await API.post('/login', { email, password });
+    const response = await API.post(
+      '/login',
+      { email, password },
+      { headers: { contentType } },
+    );
+    console.log(response);
     return response.data;
   } catch (err) {
     return AxiosErrorHandler(err);
@@ -33,7 +38,12 @@ export async function createUser(
   password: string,
 ): Promise<HttpException | null> {
   try {
-    const response = await API.post('/users', { name, email, password });
+    console.log(name, email);
+    const response = await API.post(
+      '/users',
+      { name, email, password },
+      { headers: { contentType } },
+    );
     return response.data;
   } catch (err) {
     return AxiosErrorHandler(err);
@@ -54,12 +64,8 @@ export async function getTaskById(
   token: string,
   url: string,
 ): Promise<UserTasks> {
-  try {
-    const response = await API.get(url, { headers: { authorization: token } });
-    return response.data.task;
-  } catch (err) {
-    return AxiosErrorHandler(err);
-  }
+  const response = await API.get(url, { headers: { authorization: token } });
+  return response.data.task;
 }
 
 export async function deleteTask(token: string, url: string): Promise<void> {

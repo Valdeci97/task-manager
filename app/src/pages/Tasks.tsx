@@ -11,8 +11,8 @@ import TaskMenu from '../components/TaskMenu';
 import { storageHandler } from '../utils/localStorage';
 import { toast } from '../components/ToastManager';
 import { AppCtx } from '../context/Provider';
+import { tasksConfig, toastConfig } from '../utils/constants';
 
-const filterOptions = ['Todas', 'Hoje', 'Semana', 'Mês', 'Ano', 'Atrasadas'];
 const token = storageHandler.getByKey('token') || '';
 
 export default function Tasks() {
@@ -32,9 +32,9 @@ export default function Tasks() {
       .then((res) => setTasks(res))
       .catch((err) =>
         toast.error({
-          title: 'Erro ao carregar tarefas',
-          content: err.message,
-          duration: 4500,
+          title: toastConfig.messages.tasks.loadingErr.title,
+          content: err.response.data.message,
+          duration: toastConfig.duration,
           theme: storageHandler.getByKey('theme') || 'light',
         }),
       )
@@ -45,7 +45,7 @@ export default function Tasks() {
     <>
       <Header />
       <STM.Container>
-        {filterOptions.map((filter, index) => {
+        {tasksConfig.filterOptions.map((filter, index) => {
           return (
             <TaskMenu
               isActive={isActive === filter}
@@ -58,7 +58,7 @@ export default function Tasks() {
       </STM.Container>
       {isFetching ? <span>Carregando...</span> : null}
       <STSK.Container>
-        {tasks?.map((task) => (
+        {tasks.map((task) => (
           <STSK.Link key={task.id} href={`/tasks/${task.id}`} theme={theme}>
             <TaskCard {...task} />
           </STSK.Link>

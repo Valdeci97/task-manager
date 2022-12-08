@@ -7,21 +7,23 @@ export const toastConfig = {
       },
     },
     login: {
-      err: {
-        title: 'Falha no login!',
-      },
+      err: { title: 'Falha no login!' },
       success: {
         title: 'Login bem sucedido!',
         content: 'Você será redirecionado em breve.',
       },
     },
     createUser: {
-      err: {
-        title: 'Falha ao criar usuário!',
-      },
+      err: { title: 'Falha ao criar usuário!' },
       success: {
         title: 'Usuário criado!',
         content: 'Você já pode fazer login.',
+      },
+    },
+    tasks: {
+      loadingErr: { title: 'Erro ao carregar tarefas' },
+      notFound: {
+        err: { title: 'Tarefa não encontrada' },
       },
     },
   },
@@ -61,4 +63,17 @@ export const styleConfig = {
       },
     },
   },
+};
+
+export const tasksConfig = {
+  filterOptions: ['Todas', 'Hoje', 'Semana', 'Mês', 'Ano', 'Atrasadas'],
+  categories: [
+    'Estudos',
+    'Esportes',
+    'Compras',
+    'Lazer',
+    'Exercícios',
+    'Alimentação',
+    'Viagem',
+  ],
 };
