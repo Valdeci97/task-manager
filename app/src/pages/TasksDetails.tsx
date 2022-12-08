@@ -5,9 +5,11 @@ import Header from '../components/Header';
 
 import Label from '../components/Label';
 import Select from '../components/Select';
+import TextArea from '../components/TextArea';
 import { toast } from '../components/ToastManager';
 import { AppCtx } from '../context/Provider';
 import { UserTasks } from '../interfaces/Tasks';
+import { SHARED } from '../styles/shared';
 import { getTaskById } from '../utils/api';
 import { tasksConfig, toastConfig } from '../utils/constants';
 import { storageHandler } from '../utils/localStorage';
@@ -54,48 +56,50 @@ export default function TasksDetails() {
   return (
     <>
       <Header />
-      <Label
-        text={'Título'}
-        id={'title-input'}
-        value={title}
-        handleChange={setTitle}
-        theme={theme}
-        placeholder={'Seu título aqui'}
-      />
-      <Label
-        text={'Descrição'}
-        id={'description-input'}
-        value={description}
-        handleChange={setDescription}
-        theme={theme}
-        placeholder={'descrição da tarefa'}
-      />
-      <Select
-        values={tasksConfig.categories}
-        id={'select-category'}
-        selectedValue={category}
-        handleChange={setCategory}
-      />
-      <Select
-        values={['A fazer', 'Feito']}
-        id={'task-status'}
-        selectedValue={done}
-        handleChange={setDone}
-      />
-      <DateTimeInput
-        type={'date'}
-        value={date}
-        handleChange={setDate}
-        id={'date-input'}
-        text={'Data'}
-      />
-      <DateTimeInput
-        type={'time'}
-        value={hour}
-        handleChange={setHour}
-        id={'hour-input'}
-        text={'Hora'}
-      />
+      <SHARED.Form>
+        <Label
+          text={'Título'}
+          id={'title-input'}
+          value={title}
+          handleChange={setTitle}
+          theme={theme}
+          placeholder={'Seu título aqui'}
+        />
+        <TextArea
+          text={'Descrição'}
+          id={'description-input'}
+          value={description}
+          handleChange={setDescription}
+          theme={theme}
+          placeholder={'descrição da tarefa'}
+        />
+        <Select
+          values={tasksConfig.categories}
+          id={'select-category'}
+          selectedValue={category}
+          handleChange={setCategory}
+        />
+        <Select
+          values={['A fazer', 'Feito']}
+          id={'task-status'}
+          selectedValue={done}
+          handleChange={setDone}
+        />
+        <DateTimeInput
+          type={'date'}
+          value={date}
+          handleChange={setDate}
+          id={'date-input'}
+          text={'Data'}
+        />
+        <DateTimeInput
+          type={'time'}
+          value={hour}
+          handleChange={setHour}
+          id={'hour-input'}
+          text={'Hora'}
+        />
+      </SHARED.Form>
     </>
   );
 }

@@ -91,10 +91,31 @@ const Button = styled.button<Theme>`
   }
 `;
 
+const Form = styled.form`
+  align-items: center;
+  border: solid 2px black;
+  display: flex;
+  flex-direction: column;
+  height: 80vh;
+  justify-content: center;
+`;
+
+const TextArea = styled.textarea<Theme>`
+  background-color: transparent;
+  border-radius: 0.25rem;
+  color: ${(props) => (props.theme === 'light' ? '#000' : '#fff')};
+  margin: 0.5rem 0;
+  padding: 0.5rem;
+  resize: none;
+  text-align: center;
+`;
+
 export const SHARED = {
   Input,
   LabelContainer,
   Label,
   Image,
   Button,
+  Form,
+  TextArea,
 };
