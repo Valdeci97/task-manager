@@ -5,4 +5,6 @@ export interface SelectProps {
   id: string;
   selectedValue: string;
   handleChange: Dispatch<SetStateAction<string>>;
+  text: string;
+  theme: string;
 }

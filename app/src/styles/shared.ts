@@ -1,8 +1,7 @@
 import styled from 'styled-components';
 import { styleConfig } from '../utils/constants';
 
-const { light } = styleConfig.shared.button;
-const { dark } = styleConfig.shared.button;
+const { light, dark } = styleConfig.shared.button;
 
 type Theme = { theme: string };
 
@@ -93,7 +92,6 @@ const Button = styled.button<Theme>`
 
 const Form = styled.form`
   align-items: center;
-  border: solid 2px black;
   display: flex;
   flex-direction: column;
   height: 80vh;
@@ -102,6 +100,8 @@ const Form = styled.form`
 
 const TextArea = styled.textarea<Theme>`
   background-color: transparent;
+  border: solid 1px
+    ${(props) => (props.theme === 'light' ? '#000' : dark.backgroundColor)};
   border-radius: 0.25rem;
   color: ${(props) => (props.theme === 'light' ? '#000' : '#fff')};
   margin: 0.5rem 0;

@@ -1,8 +1,7 @@
 import { createGlobalStyle } from 'styled-components';
 import { styleConfig } from '../utils/constants';
 
-const { dark } = styleConfig.theme;
-const { light } = styleConfig.theme;
+const { dark, light } = styleConfig.theme;
 
 export default createGlobalStyle<{ theme: string }>`
   * {

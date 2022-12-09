@@ -78,12 +78,16 @@ export default function TasksDetails() {
           id={'select-category'}
           selectedValue={category}
           handleChange={setCategory}
+          text={'Categoria'}
+          theme={theme}
         />
         <Select
           values={['A fazer', 'Feito']}
           id={'task-status'}
           selectedValue={done}
           handleChange={setDone}
+          text={'Condição'}
+          theme={theme}
         />
         <DateTimeInput
           type={'date'}
