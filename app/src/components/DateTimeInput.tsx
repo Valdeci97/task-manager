@@ -16,7 +16,7 @@ export default function DateTimeInput({
     <SHARED.LabelContainer>
       <SHARED.Label htmlFor={id} theme={theme}>
         {text}
-        <SHARED.Input
+        <SHARED.DateTimeInput
           type={type}
           value={value}
           onChange={({ target }) => handleChange(target.value)}

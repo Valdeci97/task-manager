@@ -18,14 +18,6 @@ const Input = styled.input<Theme>`
   &::placeholder {
     color: ${(props) => (props.theme === 'light' ? '#000' : '#fff')};
   }
-
-  &[type='date']::-webkit-calendar-picker-indicator {
-    filter: invert(${(props) => (props.theme === 'light' ? 0 : 1)});
-  }
-
-  &[type='time']::-webkit-calendar-picker-indicator {
-    filter: invert(${(props) => (props.theme === 'light' ? 0 : 1)});
-  }
 `;
 
 const LabelContainer = styled.div`
@@ -110,6 +102,34 @@ const TextArea = styled.textarea<Theme>`
   text-align: center;
 `;
 
+const DateTimeInput = styled.input`
+  background-color: transparent;
+  border: none;
+  border-bottom: solid 1px
+    ${(props) => (props.theme === 'light' ? '#000' : dark.backgroundColor)};
+  color: ${(props) => (props.theme === 'light' ? '#000' : '#fff')};
+  height: 2.25rem;
+  margin: 1rem 0;
+  text-align: center;
+  width: 10rem;
+
+  &::placeholder {
+    color: ${(props) => (props.theme === 'light' ? '#000' : '#fff')};
+  }
+
+  &:hover {
+    cursor: pointer;
+  }
+
+  &[type='date']::-webkit-calendar-picker-indicator {
+    filter: invert(${(props) => (props.theme === 'light' ? 0 : 1)});
+  }
+
+  &[type='time']::-webkit-calendar-picker-indicator {
+    filter: invert(${(props) => (props.theme === 'light' ? 0 : 1)});
+  }
+`;
+
 export const SHARED = {
   Input,
   LabelContainer,
@@ -118,4 +138,5 @@ export const SHARED = {
   Button,
   Form,
   TextArea,
+  DateTimeInput,
 };
