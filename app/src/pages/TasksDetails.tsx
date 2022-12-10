@@ -30,16 +30,17 @@ export default function TasksDetails() {
   function handleInitialState(task: UserTasks): void {
     const [formatedDate, taskHour] = task.when.split('T');
     const [formatedHour] = taskHour.split('.');
+    const [hours, minutes] = formatedHour.split(':');
     setTitle(task.title);
     setDescription(task.description);
     setCategory(task.category);
     setDone(task.done ? 'Feito' : 'A fazer');
     setDate(formatedDate);
-    setHour(formatedHour);
+    setHour(`${hours}:${minutes}`);
   }
 
   async function handleClick() {
-    const when = `${date}T${hour}.000`;
+    const when = `${date}T${hour}:00.000`;
     const finished = done === 'feito';
     const token = storageHandler.getByKey('token') || '';
     const task = {
