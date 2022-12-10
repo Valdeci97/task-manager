@@ -130,6 +130,11 @@ const DateTimeInput = styled.input`
   }
 `;
 
+const Footer = styled.footer<Theme>`
+  display: flex;
+  justify-content: center;
+`;
+
 export const SHARED = {
   Input,
   LabelContainer,
@@ -139,4 +144,5 @@ export const SHARED = {
   Form,
   TextArea,
   DateTimeInput,
+  Footer,
 };

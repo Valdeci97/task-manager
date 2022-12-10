@@ -12,6 +12,7 @@ import { storageHandler } from '../utils/localStorage';
 import { toast } from '../components/ToastManager';
 import { AppCtx } from '../context/Provider';
 import { tasksConfig, toastConfig } from '../utils/constants';
+import Footer from '../components/Footer';
 
 const token = storageHandler.getByKey('token') || '';
 
@@ -64,6 +65,7 @@ export default function Tasks() {
           </STSK.Link>
         ))}
       </STSK.Container>
+      <Footer />
     </>
   );
 }

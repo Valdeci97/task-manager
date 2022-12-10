@@ -21,3 +21,12 @@ export interface TaskProps {
   when: string;
   done: boolean;
 }
+
+export interface createTask {
+  userId: string;
+  category: string;
+  title: string;
+  description: string;
+  when: string;
+  done: boolean;
+}
