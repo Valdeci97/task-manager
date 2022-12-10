@@ -10,7 +10,7 @@ import { toast } from '../components/ToastManager';
 import { AppCtx } from '../context/Provider';
 import { UserTasks } from '../interfaces/Tasks';
 import { SHARED } from '../styles/shared';
-import { getTaskById } from '../utils/api';
+import { getTaskById, updateTask } from '../utils/api';
 import { tasksConfig, toastConfig } from '../utils/constants';
 import { storageHandler } from '../utils/localStorage';
 
@@ -23,6 +23,9 @@ export default function TasksDetails() {
   const [done, setDone] = useState<string>('');
   const [date, setDate] = useState<string>('');
   const [hour, setHour] = useState<string>('');
+  const { theme, navigate } = useContext(AppCtx);
+  const { id } = useParams();
+  const url = `/tasks/${id}`;
 
   function handleInitialState(task: UserTasks): void {
     const [formatedDate, taskHour] = task.when.split('T');
@@ -35,10 +38,29 @@ export default function TasksDetails() {
     setHour(formatedHour);
   }
 
-  const { id } = useParams();
-  const url = `/tasks/${id}`;
-
-  const { theme } = useContext(AppCtx);
+  async function handleClick() {
+    const when = `${date}T${hour}.000`;
+    const finished = done === 'feito';
+    const token = storageHandler.getByKey('token') || '';
+    const task = {
+      userId: storageHandler.getByKey('userId') || '',
+      title,
+      description,
+      category,
+      done: finished,
+      when,
+    };
+    updateTask(task, token, url)
+      .then(() => navigate('/tasks'))
+      .catch((err) =>
+        toast.error({
+          title: toastConfig.messages.tasks.updateErr.title,
+          content: err.response.data.message,
+          duration: toastConfig.duration,
+          theme,
+        }),
+      );
+  }
 
   useEffect(() => {
     getTaskById(token, url)
@@ -103,6 +125,9 @@ export default function TasksDetails() {
           id={'hour-input'}
           text={'Hora'}
         />
+        <SHARED.Button type="button" onClick={handleClick} theme={theme}>
+          Finalizar
+        </SHARED.Button>
       </SHARED.Form>
     </>
   );

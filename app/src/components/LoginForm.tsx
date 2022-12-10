@@ -1,5 +1,4 @@
 import { useContext, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 import Label from './Label';
 import Button from './Button';
 import { SL } from '../styles/login';
@@ -10,12 +9,7 @@ import { SHARED } from '../styles/shared';
 export default function LoginForm() {
   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
-  const { theme } = useContext(AppCtx);
-  const navigate = useNavigate();
-
-  function redirect(): void {
-    navigate('/signup');
-  }
+  const { theme, navigate } = useContext(AppCtx);
 
   return (
     <>
@@ -38,7 +32,11 @@ export default function LoginForm() {
           placeholder={'********'}
         />
         <Button text="Entrar" email={email} password={password} theme={theme} />
-        <SHARED.Button type="button" theme={theme} onClick={redirect}>
+        <SHARED.Button
+          type="button"
+          theme={theme}
+          onClick={() => navigate('/signup')}
+        >
           Criar conta
         </SHARED.Button>
       </SL.Container>

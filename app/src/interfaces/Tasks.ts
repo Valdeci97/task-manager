@@ -22,7 +22,7 @@ export interface TaskProps {
   done: boolean;
 }
 
-export interface createTask {
+export interface TaskRequestBody {
   userId: string;
   category: string;
   title: string;

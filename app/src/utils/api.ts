@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { HttpException, Login } from '../interfaces/api/Users';
-import { createTask, UserTasks } from '../interfaces/Tasks';
+import { TaskRequestBody, UserTasks, UserTasksById } from '../interfaces/Tasks';
 
 const URL = 'https://todo-api-dev.onrender.com';
 const contentType = 'application/json';
@@ -75,10 +75,10 @@ export async function deleteTask(token: string, url: string): Promise<void> {
 }
 
 export async function createTask(
-  task: createTask,
+  task: TaskRequestBody,
   token: string,
   url: string,
-): Promise<UserTasks> {
+): Promise<UserTasksById> {
   try {
     const response = await API.post(
       url,
@@ -89,4 +89,17 @@ export async function createTask(
   } catch (err) {
     return AxiosErrorHandler(err);
   }
+}
+
+export async function updateTask(
+  task: TaskRequestBody,
+  token: string,
+  url: string,
+): Promise<UserTasksById> {
+  const response = await API.put(
+    url,
+    { ...task },
+    { headers: { authorization: token } },
+  );
+  return response.data;
 }

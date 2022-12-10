@@ -22,6 +22,7 @@ export const toastConfig = {
     },
     tasks: {
       loadingErr: { title: 'Erro ao carregar tarefas' },
+      updateErr: { title: 'Falha ao atualizar tarefa' },
       notFound: {
         err: { title: 'Tarefa não encontrada' },
       },
