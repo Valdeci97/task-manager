@@ -79,16 +79,12 @@ export async function createTask(
   token: string,
   url: string,
 ): Promise<UserTasksById> {
-  try {
-    const response = await API.post(
-      url,
-      { ...task },
-      { headers: { authorization: token, contentType } },
-    );
-    return response.data;
-  } catch (err) {
-    return AxiosErrorHandler(err);
-  }
+  const response = await API.post(
+    url,
+    { ...task },
+    { headers: { authorization: token, contentType } },
+  );
+  return response.data;
 }
 
 export async function updateTask(

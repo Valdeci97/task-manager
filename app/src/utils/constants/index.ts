@@ -26,6 +26,7 @@ export const toastConfig = {
       notFound: {
         err: { title: 'Tarefa não encontrada' },
       },
+      creatingErr: { title: 'Falha ao criar' },
     },
   },
   duration: 4500,

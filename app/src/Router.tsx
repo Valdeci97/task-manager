@@ -1,4 +1,5 @@
 import { Routes, Route, Navigate } from 'react-router-dom';
+import CreateTask from './pages/CreateTask';
 import Login from './pages/Login';
 import Signup from './pages/Signup';
 import Tasks from './pages/Tasks';
@@ -12,6 +13,7 @@ export default function Router() {
       <Route path="/signup" element={<Signup />} />
       <Route path="/tasks" element={<Tasks />} />
       <Route path="/tasks/:id" element={<TasksDetails />} />
+      <Route path="/create-task" element={<CreateTask />} />
     </Routes>
   );
 }

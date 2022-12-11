@@ -1,47 +1,30 @@
-import { useContext, useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useContext, useState } from 'react';
 import DateTimeInput from '../components/DateTimeInput';
 import Header from '../components/Header';
-
 import Label from '../components/Label';
 import Select from '../components/Select';
 import TextArea from '../components/TextArea';
 import { toast } from '../components/ToastManager';
 import { AppCtx } from '../context/Provider';
-import { UserTasks } from '../interfaces/Tasks';
 import { SHARED } from '../styles/shared';
-import { getTaskById, updateTask } from '../utils/api';
+import { createTask } from '../utils/api';
 import { tasksConfig, toastConfig } from '../utils/constants';
 import { storageHandler } from '../utils/localStorage';
 
-const token = storageHandler.getByKey('token') || '';
-
-export default function TasksDetails() {
+export default function CreateTask() {
   const [title, setTitle] = useState<string>('');
   const [description, setDescription] = useState<string>('');
-  const [category, setCategory] = useState<string>('');
-  const [done, setDone] = useState<string>('');
+  const [category, setCategory] = useState<string>(tasksConfig.categories[0]);
+  const [done, setDone] = useState<string>('A Fazer');
   const [date, setDate] = useState<string>('');
-  const [hour, setHour] = useState<string>('');
+  const [hour, setHour] = useState<string>('00:00');
   const { theme, navigate } = useContext(AppCtx);
-  const { id } = useParams();
-  const url = `/tasks/${id}`;
 
-  function handleInitialState(task: UserTasks): void {
-    const [formatedDate, taskHour] = task.when.split('T');
-    const [formatedHour] = taskHour.split('.');
-    const [hours, minutes] = formatedHour.split(':');
-    setTitle(task.title);
-    setDescription(task.description);
-    setCategory(task.category);
-    setDone(task.done ? 'Feito' : 'A fazer');
-    setDate(formatedDate);
-    setHour(`${hours}:${minutes}`);
-  }
+  const url = '/tasks';
 
   async function handleClick(): Promise<void> {
     const when = `${date}T${hour}:00.000`;
-    const finished = done === 'feito';
+    const finished = done === 'Feito';
     const token = storageHandler.getByKey('token') || '';
     const task = {
       userId: storageHandler.getByKey('userId') || '',
@@ -51,30 +34,17 @@ export default function TasksDetails() {
       done: finished,
       when,
     };
-    updateTask(task, token, url)
-      .then(() => navigate('/tasks'))
+    createTask(task, token, url)
+      .then(() => navigate(url))
       .catch((err) =>
         toast.error({
-          title: toastConfig.messages.tasks.updateErr.title,
+          title: toastConfig.messages.tasks.creatingErr.title,
           content: err.response.data.message,
           duration: toastConfig.duration,
           theme,
         }),
       );
   }
-
-  useEffect(() => {
-    getTaskById(token, url)
-      .then((res) => handleInitialState(res))
-      .catch((err) =>
-        toast.error({
-          title: toastConfig.messages.tasks.notFound.err.title,
-          content: err.response.data.message,
-          duration: toastConfig.duration,
-          theme: storageHandler.getByKey('theme') || 'light',
-        }),
-      );
-  }, [url]);
 
   return (
     <>
@@ -123,11 +93,11 @@ export default function TasksDetails() {
           type={'time'}
           value={hour}
           handleChange={setHour}
-          id={'hour-input'}
+          id={'time-input'}
           text={'Hora'}
         />
         <SHARED.Button type="button" onClick={handleClick} theme={theme}>
-          Finalizar
+          Criar
         </SHARED.Button>
       </SHARED.Form>
     </>

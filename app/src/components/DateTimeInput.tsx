@@ -12,6 +12,11 @@ export default function DateTimeInput({
 }: DateTimeInputProps) {
   const { theme } = useContext(AppCtx);
 
+  function minDate(): string {
+    const now = new Date();
+    return `${now.getFullYear()}-${now.getMonth() + 1}-${now.getDate()}`;
+  }
+
   return (
     <SHARED.LabelContainer>
       <SHARED.Label htmlFor={id} theme={theme}>
@@ -22,6 +27,7 @@ export default function DateTimeInput({
           onChange={({ target }) => handleChange(target.value)}
           id={id}
           theme={theme}
+          min={type === 'date' ? minDate() : undefined}
         />
       </SHARED.Label>
     </SHARED.LabelContainer>
