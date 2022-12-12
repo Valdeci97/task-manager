@@ -12,9 +12,9 @@ export default function Button({
 }: ButtonProps) {
   async function handleFetch(): Promise<void> {
     if (name) {
-      return await handleCreateUser(name, email, password, theme);
+      return await handleCreateUser({ name, email, password }, theme);
     }
-    await handleLogin(email, password, theme);
+    await handleLogin({ email, password }, theme);
   }
 
   return (

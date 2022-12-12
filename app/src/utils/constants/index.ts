@@ -47,6 +47,14 @@ export const toastConfig = {
       title: 'Nome inválido',
       content: 'O nome deve ter pelo menos 3 caracteres',
     },
+    category: {
+      title: 'Categoria inválida',
+      content: 'Escolha uma catagoria válida para a tarefa',
+    },
+    isoDate: {
+      title: 'Data inválida',
+      content: 'Verifique se o campo data está preenchido corretamente',
+    },
   },
 };
 

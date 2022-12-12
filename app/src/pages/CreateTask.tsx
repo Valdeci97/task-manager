@@ -10,6 +10,7 @@ import { SHARED } from '../styles/shared';
 import { createTask } from '../utils/api';
 import { tasksConfig, toastConfig } from '../utils/constants';
 import { storageHandler } from '../utils/localStorage';
+import { validateTask } from '../utils/validate';
 
 export default function CreateTask() {
   const [title, setTitle] = useState<string>('');
@@ -23,7 +24,7 @@ export default function CreateTask() {
   const url = '/tasks';
 
   async function handleClick(): Promise<void> {
-    const when = `${date}T${hour}:00.000`;
+    const when = `${date}T${hour}:00.000Z`;
     const finished = done === 'Feito';
     const token = storageHandler.getByKey('token') || '';
     const task = {
@@ -34,6 +35,8 @@ export default function CreateTask() {
       done: finished,
       when,
     };
+    const invalid = validateTask(task, theme);
+    if (invalid) return toast.warn({ ...invalid });
     createTask(task, token, url)
       .then(() => navigate(url))
       .catch((err) =>

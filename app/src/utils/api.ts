@@ -1,6 +1,7 @@
 import axios from 'axios';
 import { HttpException, Login } from '../interfaces/api/Users';
 import { TaskRequestBody, UserTasks, UserTasksById } from '../interfaces/Tasks';
+import { CreateUser, UserLogin } from '../interfaces/User';
 
 const URL = 'https://todo-api-dev.onrender.com';
 const contentType = 'application/json';
@@ -15,10 +16,10 @@ function AxiosErrorHandler(err: unknown) {
   return null;
 }
 
-export async function login(
-  email: string,
-  password: string,
-): Promise<Login | null> {
+export async function login({
+  email,
+  password,
+}: UserLogin): Promise<Login | null> {
   try {
     const response = await API.post(
       '/login',
@@ -31,11 +32,11 @@ export async function login(
   }
 }
 
-export async function createUser(
-  name: string,
-  email: string,
-  password: string,
-): Promise<HttpException | null> {
+export async function createUser({
+  name,
+  email,
+  password,
+}: CreateUser): Promise<HttpException | null> {
   try {
     const response = await API.post(
       '/users',

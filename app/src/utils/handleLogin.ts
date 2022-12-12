@@ -1,5 +1,6 @@
 import { toast } from '../components/ToastManager';
 import { Login } from '../interfaces/api/Users';
+import { UserLogin } from '../interfaces/User';
 import { login } from './api';
 import { toastConfig } from './constants';
 import { storageHandler } from './localStorage';
@@ -33,12 +34,11 @@ function handleLoginResponse(response: Login | null, theme: string): void {
 }
 
 export async function handleLogin(
-  email: string,
-  password: string,
+  user: UserLogin,
   theme: string,
 ): Promise<void> {
-  const toastInfo = validateLogin(email, password, theme);
+  const toastInfo = validateLogin(user, theme);
   if (toastInfo) return toast.warn({ ...toastInfo });
-  const response = await login(email, password);
+  const response = await login(user);
   handleLoginResponse(response, theme);
 }

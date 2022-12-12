@@ -1,5 +1,6 @@
 import { toast } from '../components/ToastManager';
 import { HttpException } from '../interfaces/api/Users';
+import { CreateUser } from '../interfaces/User';
 import { createUser } from './api';
 import { toastConfig } from './constants';
 import { validateUser } from './validate';
@@ -33,13 +34,11 @@ function handleCreateUserResponse(
 }
 
 export async function handleCreateUser(
-  name: string,
-  email: string,
-  password: string,
+  user: CreateUser,
   theme: string,
 ): Promise<void> {
-  const toastInfo = validateUser(name, email, password, theme);
+  const toastInfo = validateUser(user, theme);
   if (toastInfo) return toast.warn({ ...toastInfo });
-  const response = await createUser(name, email, password);
+  const response = await createUser(user);
   handleCreateUserResponse(response, theme);
 }
