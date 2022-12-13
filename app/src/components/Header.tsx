@@ -1,7 +1,6 @@
 import { useContext } from 'react';
 import { AppCtx } from '../context/Provider';
 import { SH } from '../styles/header';
-import { SHARED } from '../styles/shared';
 import { SW } from '../styles/switch';
 import { storageHandler } from '../utils/localStorage';
 
@@ -26,14 +25,14 @@ export default function Header({ text }: { text?: string }): JSX.Element {
   return (
     <>
       <SH.Container theme={theme}>
-        <header>
-          <h1>{text ? text : 'Task manager'}</h1>
+        <SH.Header>
+          <SH.Title>{text ? text : 'Task manager'}</SH.Title>
           {text ? (
-            <SHARED.Button type="button" onClick={logoff} theme={theme}>
+            <SH.LogoffButton type="button" onClick={logoff} theme={theme}>
               Sair
-            </SHARED.Button>
+            </SH.LogoffButton>
           ) : null}
-        </header>
+        </SH.Header>
         <SW.Theme htmlFor="theme">
           <input
             type="checkbox"
