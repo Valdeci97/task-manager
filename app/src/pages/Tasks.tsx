@@ -14,20 +14,23 @@ import { AppCtx } from '../context/Provider';
 import { tasksConfig, toastConfig } from '../utils/constants';
 import Footer from '../components/Footer';
 
-const token = storageHandler.getByKey('token') || '';
+const token = storageHandler.getUserToken();
 
 export default function Tasks() {
   const [isActive, setIsActive] = useState<string>(
-    storageHandler.getByKey('isActive') || 'Todas',
+    storageHandler.getUserFilter(),
   );
   const [tasks, setTasks] = useState<UserTasks[]>([]);
   const [isFetching, setIsFetching] = useState<boolean>(true);
 
-  const { theme } = useContext(AppCtx);
+  const { theme, navigate } = useContext(AppCtx);
 
   useEffect(() => {
+    if (token === 'inválido') {
+      return window.location.assign(`${window.location.origin}/login`);
+    }
     setIsFetching(true);
-    storageHandler.setByKey('isActive', isActive);
+    storageHandler.setUserFilter({ isActive });
     const url = handleTasks(isActive);
     getTasks(token, url)
       .then((res) => setTasks(res))
@@ -36,11 +39,11 @@ export default function Tasks() {
           title: toastConfig.messages.tasks.loadingErr.title,
           content: err.response.data.message,
           duration: toastConfig.duration,
-          theme: storageHandler.getByKey('theme') || 'light',
+          theme: storageHandler.getTheme(),
         }),
       )
       .finally(() => setIsFetching(false));
-  }, [isActive]);
+  }, [isActive, navigate]);
 
   return (
     <>

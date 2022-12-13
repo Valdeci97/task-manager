@@ -6,7 +6,10 @@ import { toastConfig } from './constants';
 import { storageHandler } from './localStorage';
 import { validateLogin } from './validate';
 
-function handleLoginResponse(response: Login | null, theme: string): void {
+function handleLoginResponse(
+  response: Login | null,
+  theme: string,
+): NodeJS.Timeout | void {
   if (!response) {
     return toast.warn({
       title: toastConfig.messages.sleepApi.warn.title,
@@ -23,14 +26,19 @@ function handleLoginResponse(response: Login | null, theme: string): void {
       theme,
     });
   }
-  storageHandler.setByKey('token', response.login.token);
-  storageHandler.setByKey('userId', response.login.user.id);
-  return toast.success({
+  storageHandler.setupUser({
+    token: `Bearer ${response.login.token}`,
+    id: response.login.user.id,
+  });
+  toast.success({
     title: toastConfig.messages.login.success.title,
     content: toastConfig.messages.login.success.content,
     duration: toastConfig.duration,
     theme,
   });
+  return setTimeout(() => {
+    return window.location.assign(`${window.location.origin}/tasks`);
+  }, 4000);
 }
 
 export async function handleLogin(

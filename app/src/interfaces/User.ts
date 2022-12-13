@@ -8,3 +8,16 @@ export interface CreateUser {
   email: string;
   password: string;
 }
+
+export interface UserInfo {
+  token: string;
+  id: string;
+}
+
+export interface UserPreferences {
+  theme: string;
+}
+
+export interface UserFilter {
+  isActive: string;
+}

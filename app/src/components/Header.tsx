@@ -10,10 +10,10 @@ export default function Header(): JSX.Element {
   function handleTheme(): void {
     const isLight = theme === 'light';
     if (isLight) {
-      storageHandler.setByKey('theme', 'dark');
+      storageHandler.setUserPreferences({ theme: 'dark' });
       return setTheme('dark');
     }
-    storageHandler.setByKey('theme', 'light');
+    storageHandler.setUserPreferences({ theme: 'light' });
     setTheme('light');
   }
 

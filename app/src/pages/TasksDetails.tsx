@@ -14,7 +14,9 @@ import { getTaskById, updateTask } from '../utils/api';
 import { tasksConfig, toastConfig } from '../utils/constants';
 import { storageHandler } from '../utils/localStorage';
 
-const token = storageHandler.getByKey('token') || '';
+const token = storageHandler.getUserToken();
+const userId = storageHandler.getUserId();
+const invalid = 'inválido';
 
 export default function TasksDetails() {
   const [title, setTitle] = useState<string>('');
@@ -40,11 +42,10 @@ export default function TasksDetails() {
   }
 
   async function handleClick(): Promise<void> {
-    const when = `${date}T${hour}:00.000`;
+    const when = `${date}T${hour}:00.000Z`;
     const finished = done === 'feito';
-    const token = storageHandler.getByKey('token') || '';
     const task = {
-      userId: storageHandler.getByKey('userId') || '',
+      userId,
       title,
       description,
       category,
@@ -64,6 +65,9 @@ export default function TasksDetails() {
   }
 
   useEffect(() => {
+    if (token === invalid || userId === invalid) {
+      return window.location.assign(`${window.location.origin}/login`);
+    }
     getTaskById(token, url)
       .then((res) => handleInitialState(res))
       .catch((err) =>
@@ -71,7 +75,7 @@ export default function TasksDetails() {
           title: toastConfig.messages.tasks.notFound.err.title,
           content: err.response.data.message,
           duration: toastConfig.duration,
-          theme: storageHandler.getByKey('theme') || 'light',
+          theme: storageHandler.getTheme(),
         }),
       );
   }, [url]);

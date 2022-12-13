@@ -69,6 +69,12 @@ function validateFieldByMinLength(
   }
 }
 
+function validateUserId(id: string, theme: string = LIGHT): Validation {
+  if (id.length !== 24) {
+    return { ...categoryFieldToastConfig, theme };
+  }
+}
+
 function validateTaskCategory(filter: string, theme = LIGHT): Validation {
   const exists = tasksConfig.categories.find((category) => category === filter);
   if (!exists) {
@@ -105,8 +111,12 @@ export function validateUser(user: CreateUser, theme: string): Validation {
   return result;
 }
 
-export function validateTask(task: TaskRequestBody, theme: string): Validation {
+export function validateTaskRequest(
+  task: TaskRequestBody,
+  theme: string,
+): Validation {
   const validations = [
+    validateUserId(task.userId, theme),
     validateEmptyField(task.title, theme),
     validateEmptyField(task.description, theme),
     validateTaskCategory(task.category, theme),

@@ -1,4 +1,4 @@
-import { useContext, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import DateTimeInput from '../components/DateTimeInput';
 import Header from '../components/Header';
 import Label from '../components/Label';
@@ -10,7 +10,11 @@ import { SHARED } from '../styles/shared';
 import { createTask } from '../utils/api';
 import { tasksConfig, toastConfig } from '../utils/constants';
 import { storageHandler } from '../utils/localStorage';
-import { validateTask } from '../utils/validate';
+import { validateTaskRequest } from '../utils/validate';
+
+const token = storageHandler.getUserToken();
+const userId = storageHandler.getUserId();
+const invalid = 'inválido';
 
 export default function CreateTask() {
   const [title, setTitle] = useState<string>('');
@@ -23,19 +27,24 @@ export default function CreateTask() {
 
   const url = '/tasks';
 
+  useEffect(() => {
+    if (token === invalid || userId === invalid) {
+      return window.location.assign(`${window.location.origin}/login`);
+    }
+  }, []);
+
   async function handleClick(): Promise<void> {
     const when = `${date}T${hour}:00.000Z`;
     const finished = done === 'Feito';
-    const token = storageHandler.getByKey('token') || '';
     const task = {
-      userId: storageHandler.getByKey('userId') || '',
+      userId,
       title,
       description,
       category,
       done: finished,
       when,
     };
-    const invalid = validateTask(task, theme);
+    const invalid = validateTaskRequest(task, theme);
     if (invalid) return toast.warn({ ...invalid });
     createTask(task, token, url)
       .then(() => navigate(url))

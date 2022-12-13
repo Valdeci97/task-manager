@@ -4,7 +4,7 @@ const filterOptions = ['Hoje', 'Semana', 'Mês', 'Ano', 'Atrasadas'];
 
 export function handleTasks(filter: string): string {
   let url: string;
-  const id = storageHandler.getByKey('userId');
+  const id = storageHandler.getUserId();
   const baseURL = '/tasks';
   switch (filter) {
     case filterOptions[0]:

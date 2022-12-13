@@ -27,10 +27,9 @@ export const Provider: FC<ContextProps> = ({ children }): JSX.Element => {
   const value = { theme, setTheme, navigate };
 
   const handleTheme = useCallback(() => {
-    const localTheme = storageHandler.getByKey('theme');
-    if (!localTheme) return storageHandler.setByKey('theme', theme);
+    const localTheme = storageHandler.getTheme();
     setTheme(localTheme);
-  }, [theme]);
+  }, []);
 
   useEffect(() => {
     handleTheme();
