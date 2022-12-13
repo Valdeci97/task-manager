@@ -119,8 +119,14 @@ const DateTimeInput = styled.input`
 `;
 
 const Footer = styled.footer<Theme>`
+  border-top: solid 1px
+    ${(props) => (props.theme === 'light' ? '#000' : '#fff')};
   display: flex;
   justify-content: center;
+
+  button {
+    margin-top: 0.25rem;
+  }
 `;
 
 const TextAreaContainer = styled.textarea<Theme>`

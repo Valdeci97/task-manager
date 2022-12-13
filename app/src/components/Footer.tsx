@@ -7,7 +7,7 @@ export default function Footer() {
 
   return (
     <>
-      <SHARED.Footer>
+      <SHARED.Footer theme={theme}>
         <SHARED.Button
           type="button"
           onClick={() => navigate('/create-task')}
