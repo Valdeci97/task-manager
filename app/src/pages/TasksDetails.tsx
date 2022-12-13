@@ -1,17 +1,16 @@
 import { useContext, useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import DateTimeInput from '../components/DateTimeInput';
-import Header from '../components/Header';
-
 import Label from '../components/Label';
 import Select from '../components/Select';
+import Header from '../components/Header';
 import TextArea from '../components/TextArea';
 import { toast } from '../components/ToastManager';
 import { AppCtx } from '../context/Provider';
 import { UserTasks } from '../interfaces/Tasks';
 import { SHARED } from '../styles/shared';
 import { deleteTask, getTaskById, updateTask } from '../utils/api';
-import { tasksConfig, toastConfig } from '../utils/constants';
+import { greetings, tasksConfig, toastConfig } from '../utils/constants';
 import { storageHandler } from '../utils/localStorage';
 
 const token = storageHandler.getUserToken();
@@ -95,7 +94,7 @@ export default function TasksDetails() {
 
   return (
     <>
-      <Header />
+      <Header text={greetings} />
       <SHARED.Form>
         <Label
           text={'Título'}

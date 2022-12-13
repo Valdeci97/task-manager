@@ -1,5 +1,6 @@
 import { useState, useEffect, useContext } from 'react';
 
+import Footer from '../components/Footer';
 import Header from '../components/Header';
 import TaskCard from '../components/TaskCard';
 import { STSK } from '../styles/tasks';
@@ -11,8 +12,7 @@ import TaskMenu from '../components/TaskMenu';
 import { storageHandler } from '../utils/localStorage';
 import { toast } from '../components/ToastManager';
 import { AppCtx } from '../context/Provider';
-import { tasksConfig, toastConfig } from '../utils/constants';
-import Footer from '../components/Footer';
+import { greetings, tasksConfig, toastConfig } from '../utils/constants';
 
 const token = storageHandler.getUserToken();
 
@@ -23,7 +23,7 @@ export default function Tasks() {
   const [tasks, setTasks] = useState<UserTasks[]>([]);
   const [isFetching, setIsFetching] = useState<boolean>(true);
 
-  const { theme, navigate } = useContext(AppCtx);
+  const { theme } = useContext(AppCtx);
 
   useEffect(() => {
     if (token === 'inválido') {
@@ -43,11 +43,11 @@ export default function Tasks() {
         }),
       )
       .finally(() => setIsFetching(false));
-  }, [isActive, navigate]);
+  }, [isActive]);
 
   return (
     <>
-      <Header />
+      <Header text={greetings} />
       <STM.Container>
         {tasksConfig.filterOptions.map((filter, index) => {
           return (

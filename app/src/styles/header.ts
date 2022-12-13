@@ -17,6 +17,19 @@ const Container = styled.div<{ theme: string }>`
   @media (min-width: 541px) and (max-width: 760px) {
     font-size: 1rem;
   }
+
+  header {
+    display: flex;
+    align-items: center;
+
+    h1 {
+      margin-right: 10rem;
+    }
+
+    button {
+      margin-top: 1rem;
+    }
+  }
 `;
 
 export const SH = {

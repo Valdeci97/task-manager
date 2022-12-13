@@ -40,6 +40,18 @@ function getUserFilter(): string {
   return filter.isActive;
 }
 
+function getUsername(): string {
+  const local = localStorage.getItem('user');
+  if (!local) return 'Usuário';
+  const user = JSON.parse(local);
+  return user.name;
+}
+
+function reset(): void {
+  localStorage.removeItem('user');
+  localStorage.removeItem('filter');
+}
+
 export const storageHandler = {
   setupUser,
   setUserPreferences,
@@ -48,4 +60,6 @@ export const storageHandler = {
   getUserId,
   getTheme,
   getUserFilter,
+  getUsername,
+  reset,
 };

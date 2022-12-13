@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 const Container = styled.div`
   display: flex;
-  height: 75vh;
+  height: 70vh;
   justify-content: space-evenly;
 
   @media (max-width: 680px) {

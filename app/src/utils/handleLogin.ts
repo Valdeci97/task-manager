@@ -29,6 +29,7 @@ function handleLoginResponse(
   storageHandler.setupUser({
     token: `Bearer ${response.login.token}`,
     id: response.login.user.id,
+    name: response.login.user.name,
   });
   toast.success({
     title: toastConfig.messages.login.success.title,

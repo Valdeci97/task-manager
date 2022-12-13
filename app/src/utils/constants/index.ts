@@ -1,3 +1,5 @@
+import { storageHandler } from '../localStorage';
+
 export const toastConfig = {
   messages: {
     sleepApi: {
@@ -87,3 +89,5 @@ export const tasksConfig = {
     'Viagem',
   ],
 };
+
+export const greetings = `Olá, ${storageHandler.getUsername()}.`;

@@ -8,7 +8,7 @@ import { toast } from '../components/ToastManager';
 import { AppCtx } from '../context/Provider';
 import { SHARED } from '../styles/shared';
 import { createTask } from '../utils/api';
-import { tasksConfig, toastConfig } from '../utils/constants';
+import { greetings, tasksConfig, toastConfig } from '../utils/constants';
 import { storageHandler } from '../utils/localStorage';
 import { validateTaskRequest } from '../utils/validate';
 
@@ -60,7 +60,7 @@ export default function CreateTask() {
 
   return (
     <>
-      <Header />
+      <Header text={greetings} />
       <SHARED.Form>
         <Label
           text={'Título'}

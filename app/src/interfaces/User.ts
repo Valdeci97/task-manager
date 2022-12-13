@@ -12,6 +12,7 @@ export interface CreateUser {
 export interface UserInfo {
   token: string;
   id: string;
+  name: string;
 }
 
 export interface UserPreferences {
