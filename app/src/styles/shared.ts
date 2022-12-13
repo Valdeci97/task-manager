@@ -90,17 +90,17 @@ const Form = styled.form`
   justify-content: center;
 `;
 
-const TextArea = styled.textarea<Theme>`
-  background-color: transparent;
-  border: solid 1px
-    ${(props) => (props.theme === 'light' ? '#000' : dark.backgroundColor)};
-  border-radius: 0.25rem;
-  color: ${(props) => (props.theme === 'light' ? '#000' : '#fff')};
-  margin: 0.5rem 0;
-  padding: 0.5rem;
-  resize: none;
-  text-align: center;
-`;
+// const TextArea = styled.textarea<Theme>`
+//   background-color: transparent;
+//   border: solid 1px
+//     ${(props) => (props.theme === 'light' ? '#000' : dark.backgroundColor)};
+//   border-radius: 0.25rem;
+//   color: ${(props) => (props.theme === 'light' ? '#000' : '#fff')};
+//   margin: 0.5rem 0;
+//   padding: 0.5rem;
+//   resize: none;
+//   text-align: center;
+// `;
 
 const DateTimeInput = styled.input`
   background-color: transparent;
@@ -135,6 +135,18 @@ const Footer = styled.footer<Theme>`
   justify-content: center;
 `;
 
+const TextAreaContainer = styled.textarea<Theme>`
+  background-color: transparent;
+  border: solid 1px
+    ${(props) => (props.theme === 'light' ? '#000' : dark.backgroundColor)};
+  border-radius: 0.25rem;
+  color: ${(props) => (props.theme === 'light' ? '#000' : '#fff')};
+  margin: 0.5rem 0;
+  padding: 0.5rem;
+  resize: none;
+  text-align: center;
+`;
+
 export const SHARED = {
   Input,
   LabelContainer,
@@ -142,7 +154,7 @@ export const SHARED = {
   Image,
   Button,
   Form,
-  TextArea,
+  TextAreaContainer,
   DateTimeInput,
   Footer,
 };

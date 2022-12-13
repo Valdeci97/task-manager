@@ -13,9 +13,9 @@ export default function TextArea({
     <SHARED.LabelContainer>
       <SHARED.Label htmlFor={id} theme={theme}>
         {text}&nbsp;&nbsp;
-        <SHARED.TextArea
+        <SHARED.TextAreaContainer
+          contentEditable={true}
           placeholder={placeholder}
-          rows={10}
           onChange={({ target }) => handleChange(target.value)}
           value={value}
           id={id}

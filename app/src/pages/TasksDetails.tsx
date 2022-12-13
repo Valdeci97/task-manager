@@ -10,7 +10,7 @@ import { toast } from '../components/ToastManager';
 import { AppCtx } from '../context/Provider';
 import { UserTasks } from '../interfaces/Tasks';
 import { SHARED } from '../styles/shared';
-import { getTaskById, updateTask } from '../utils/api';
+import { deleteTask, getTaskById, updateTask } from '../utils/api';
 import { tasksConfig, toastConfig } from '../utils/constants';
 import { storageHandler } from '../utils/localStorage';
 
@@ -57,6 +57,19 @@ export default function TasksDetails() {
       .catch((err) =>
         toast.error({
           title: toastConfig.messages.tasks.updateErr.title,
+          content: err.response.data.message,
+          duration: toastConfig.duration,
+          theme,
+        }),
+      );
+  }
+
+  async function handleDeleteClick(): Promise<void> {
+    deleteTask(token, url)
+      .then(() => navigate('/tasks'))
+      .catch((err) =>
+        toast.error({
+          title: 'Falha',
           content: err.response.data.message,
           duration: toastConfig.duration,
           theme,
@@ -132,6 +145,9 @@ export default function TasksDetails() {
         />
         <SHARED.Button type="button" onClick={handleClick} theme={theme}>
           Finalizar
+        </SHARED.Button>
+        <SHARED.Button type="button" onClick={handleDeleteClick} theme={theme}>
+          Excluir
         </SHARED.Button>
       </SHARED.Form>
     </>

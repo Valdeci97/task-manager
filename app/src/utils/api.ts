@@ -68,11 +68,7 @@ export async function getTaskById(
 }
 
 export async function deleteTask(token: string, url: string): Promise<void> {
-  try {
-    await API.delete(url, { headers: { authorization: token } });
-  } catch (err) {
-    return AxiosErrorHandler(err);
-  }
+  await API.delete(url, { headers: { authorization: token } });
 }
 
 export async function createTask(
