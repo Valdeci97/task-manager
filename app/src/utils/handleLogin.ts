@@ -39,7 +39,7 @@ function handleLoginResponse(
   });
   return setTimeout(() => {
     return window.location.assign(`${window.location.origin}/tasks`);
-  }, 4000);
+  }, 1000);
 }
 
 export async function handleLogin(
