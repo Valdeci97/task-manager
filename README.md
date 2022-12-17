@@ -3,7 +3,7 @@
 ### <div align="center">Web app para gerenciamento de tarefas</div>
 
 
-## <div align="center">Tecnologias</div> https://task-manager-nu-ruddy.vercel.app/login
+## <div align="center">Tecnologias</div>
 Projeto feito para gerenciamento de tarefas do dia a dia via browser. [deploy](https://task-manager-valdeci97.vercel.app)
 
 PS: Essa aplicação faz consumo de uma API gratuita, isto é, ela "dorme". Caso tenha algum problema com relação ao tempo para executar login ou criar usuário, tente ativar a API manualmente clicando [AQUI](https://todo-api-dev.onrender.com/api-docs). Se o link não abrir a doc API - após um tempo considerável - e o problema continuar, por favor me avise.
