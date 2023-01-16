@@ -30,6 +30,11 @@ Abra um terminal e clone o repositório - exemplo com chave SSH.
 git clone git@github.com:Valdeci97/task-manager.git
 ```
 
+Entre na pasta do projeto
+```
+cd task-manager/app
+```
+
 Inicie o container docker.
 
 ```
